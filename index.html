@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2012 Red Selects Scouting</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2012 Selects Scouting</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- ── Team Switcher Bar ── -->
+<div class="team-switcher">
+  <span class="ts-label">2026 Season</span>
+  <button class="ts-btn active" data-team="red" onclick="switchTeam('red')">
+    <span class="ts-dot ts-dot-red"></span>2012 Red
+  </button>
+  <button class="ts-btn" data-team="royal" onclick="switchTeam('royal')">
+    <span class="ts-dot ts-dot-royal"></span>2012 Royal
+  </button>
+</div>
 
 <div class="app-shell">
 
   <!-- ── Sidebar ── -->
   <aside class="sidebar">
     <div class="sidebar-logo">
-      <h1>2012 Red Selects<br>Scouting Report</h1>
+      <h1 id="sidebar-team-name">2012 Red Selects<br>Scouting Report</h1>
       <p>2026 Season · Advanced Analytics</p>
     </div>
     <nav class="nav">
@@ -34,7 +45,7 @@
       </div>
       <div class="nav-section">
         <div class="nav-label">Scouting Report</div>
-        <button class="nav-btn" data-page="scouting"><span class="icon">📋</span>Strengths & Weaknesses</button>
+        <button class="nav-btn" data-page="scouting"><span class="icon">📋</span>Strengths &amp; Weaknesses</button>
         <button class="nav-btn" data-page="gameplan"><span class="icon">🗺️</span>Game Plan</button>
       </div>
     </nav>
@@ -58,21 +69,11 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="chart-card" style="margin:0">
           <div class="chart-title" style="color:var(--green);font-weight:600">Top strengths</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.8">
-            • Van Mierlo: 2.24× finishing ratio (21 GP)<br>
-            • Leibowitz: +0.50 net xG/GP — best on-ice impact<br>
-            • Poupyrev: 2.90 xG/shot over 48 GP<br>
-            • Faceoff depth: two centers at 51% on 300+ draws
-          </div>
+          <div id="ov-strengths" style="font-size:13px;color:var(--text2);line-height:1.8"></div>
         </div>
         <div class="chart-card" style="margin:0">
           <div class="chart-title" style="color:var(--red);font-weight:600">Key vulnerabilities</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.8">
-            • Ivmark &amp; Su: both 44% CORSI on large samples<br>
-            • Ivmark: −0.53 net xG/GP over 47 GP<br>
-            • Goalie 2: GSAx −5.91 over 5 games<br>
-            • Poupyrev: −0.23 net xG/GP despite 48 GP
-          </div>
+          <div id="ov-weaknesses" style="font-size:13px;color:var(--text2);line-height:1.8"></div>
         </div>
       </div>
     </div>
@@ -95,12 +96,7 @@
         <h2>Finishing &amp; Shot Quality</h2>
         <p>Finishing ratio = actual goals ÷ xG. Above 1.0 = outperforming expected goals (clinical finisher). xG/shot shows where shots originate.</p>
       </div>
-      <div class="metric-row">
-        <div class="metric-card good"><div class="metric-label">Best finisher (10+ GP)</div><div class="metric-value">2.24×</div><div class="metric-sub">Van Mierlo — 21 GP</div></div>
-        <div class="metric-card"><div class="metric-label">Leibowitz finishing</div><div class="metric-value">1.33×</div><div class="metric-sub">16 GP — reliable</div></div>
-        <div class="metric-card"><div class="metric-label">Best xG/shot</div><div class="metric-value">2.90</div><div class="metric-sub">Poupyrev — 48 GP</div></div>
-        <div class="metric-card warn"><div class="metric-label">Ivmark finishing</div><div class="metric-value">0.81×</div><div class="metric-sub">Underperforming xG — 47 GP</div></div>
-      </div>
+      <div id="fin-metrics" class="metric-row"></div>
       <div class="chart-card">
         <div class="chart-title">Goals/GP vs xG/GP — reliable players only (10+ GP)</div>
         <div class="chart-wrap" style="height:260px"><canvas id="fin-chart"></canvas></div>
@@ -116,12 +112,9 @@
             <th>Goals/GP</th><th>xG/GP</th><th>G−xG/GP</th>
             <th>Finishing</th><th>xG/shot</th><th>SOG/GP</th>
           </tr></thead>
-          <tbody>
-            ${PLAYERS.map ? "" : ""}
-          </tbody>
+          <tbody id="fin-table-body"></tbody>
         </table>
       </div>
-      <p class="note-text">Table populated on load via JS below.</p>
     </div>
 
     <!-- Possession -->
@@ -130,12 +123,7 @@
         <h2>Possession</h2>
         <p>CORSI% = shot attempts for ÷ total while on ice. Fenwick% excludes blocks. 50% = neutral. Above 50% = team controls puck more than opponents when this player is on.</p>
       </div>
-      <div class="metric-row">
-        <div class="metric-card good"><div class="metric-label">Best F CORSI (10+ GP)</div><div class="metric-value">58%</div><div class="metric-sub">Leibowitz</div></div>
-        <div class="metric-card good"><div class="metric-label">Best D CORSI (10+ GP)</div><div class="metric-value">52%</div><div class="metric-sub">Krieger — only positive D</div></div>
-        <div class="metric-card warn"><div class="metric-label">D possession problem</div><div class="metric-value">44%</div><div class="metric-sub">Ivmark (47 GP) and Su (19 GP)</div></div>
-        <div class="metric-card"><div class="metric-label">FO centers</div><div class="metric-value">51%</div><div class="metric-sub">Mierlo (324) + Leibowitz (291 draws)</div></div>
-      </div>
+      <div id="poss-metrics" class="metric-row"></div>
       <div class="chart-card">
         <div class="chart-title">CORSI% — all players sorted descending (faded = &lt;10 GP)</div>
         <div class="chart-wrap" style="height:320px"><canvas id="corsi-chart"></canvas></div>
@@ -149,7 +137,7 @@
           <tbody id="poss-table-body"></tbody>
         </table>
       </div>
-      <p class="note-text">* Gaudet Jr.'s 100% FO = 1 draw taken — not meaningful. ScCh% = scoring chance conversion rate.</p>
+      <p id="poss-footnote" class="note-text"></p>
     </div>
 
     <!-- On-Ice Impact -->
@@ -158,12 +146,7 @@
         <h2>On-Ice Impact</h2>
         <p>Net xG/GP = team xG minus opponent xG while the player is on the ice, per game. The most direct measure of a player's on-ice impact regardless of individual stats. Reliable samples (10+ GP) only in chart.</p>
       </div>
-      <div class="metric-row">
-        <div class="metric-card good"><div class="metric-label">Best net xG/GP (10+ GP)</div><div class="metric-value">+0.50</div><div class="metric-sub">Leibowitz — 16 GP</div></div>
-        <div class="metric-card"><div class="metric-label">Van Mierlo net xG/GP</div><div class="metric-value">+0.16</div><div class="metric-sub">21 GP</div></div>
-        <div class="metric-card warn"><div class="metric-label">Ivmark net xG/GP</div><div class="metric-value">−0.53</div><div class="metric-sub">47 GP — very reliable negative signal</div></div>
-        <div class="metric-card warn"><div class="metric-label">Poupyrev net xG/GP</div><div class="metric-value">−0.23</div><div class="metric-sub">48 GP — net negative despite scoring</div></div>
-      </div>
+      <div id="onice-metrics" class="metric-row"></div>
       <div class="chart-card">
         <div class="chart-title">Net xG/GP — reliable players (10+ GP)</div>
         <div class="chart-wrap" style="height:280px"><canvas id="netxg-chart"></canvas></div>
@@ -183,34 +166,9 @@
     <div id="goalies" class="page">
       <div class="page-header">
         <h2>Goalie Analysis</h2>
-        <p>GSAx (Goals Saved Above Expected) = xGA − actual GA. Positive = outperformed shot quality. Both goalies are net-negative — allowing more than the defense earns.</p>
+        <p>GSAx (Goals Saved Above Expected) = xGA − actual GA. Positive = outperformed shot quality.</p>
       </div>
-
-      <!-- G1 -->
-      <div class="section-label">Goalie 1</div>
-      <div class="metric-row">
-        <div class="metric-card"><div class="metric-label">Saves / Shots</div><div class="metric-value" id="g1-saves">—</div></div>
-        <div class="metric-card"><div class="metric-label">SV%</div><div class="metric-value" id="g1-svpct">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total GSAx</div><div class="metric-value" id="g1-gsax">—</div><div class="metric-sub">Goals saved above expected</div></div>
-        <div class="metric-card"><div class="metric-label">Total xGA faced</div><div class="metric-value" id="g1-xga">—</div></div>
-      </div>
-      <div id="g1-games" class="goalie-grid"></div>
-
-      <!-- G2 -->
-      <div class="section-label">Goalie 2</div>
-      <div class="metric-row">
-        <div class="metric-card"><div class="metric-label">Saves / Shots</div><div class="metric-value" id="g2-saves">—</div></div>
-        <div class="metric-card"><div class="metric-label">SV%</div><div class="metric-value" id="g2-svpct">—</div></div>
-        <div class="metric-card warn"><div class="metric-label">Total GSAx</div><div class="metric-value" id="g2-gsax">—</div><div class="metric-sub">Goals saved above expected</div></div>
-        <div class="metric-card"><div class="metric-label">Total xGA faced</div><div class="metric-value" id="g2-xga">—</div></div>
-      </div>
-      <div id="g2-games" class="goalie-grid"></div>
-
-      <div class="chart-card" style="margin-top:8px">
-        <div class="chart-title">GSAx by game — first 4 = Goalie 1 · last 5 = Goalie 2</div>
-        <div class="chart-wrap" style="height:240px"><canvas id="goalie-chart"></canvas></div>
-      </div>
-      <p class="note-text">G1 note: aggregate is rescued by one outlier game (+3.80 GSAx vs 4.80 xGA). Strip that and he is −5.46 over the other 3 games. Both goalies show the same underlying problem.</p>
+      <div id="goalies-content"></div>
     </div>
 
     <!-- Strengths & Weaknesses -->
@@ -248,56 +206,6 @@
 </div>
 
 <button class="mobile-nav-toggle" id="mobileToggle">☰</button>
-
-<!-- Fill finishing table after DOM ready -->
-<script>
-  // Inline finishing + possession + on-ice tables — must run after data.js loads
-  function fillTables() {
-    // Finishing table
-    const ftb = document.querySelector("#finishing .table-wrap tbody");
-    if (ftb) ftb.innerHTML = PLAYERS.map(p => `
-      <tr>
-        <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
-        <td class="${p.pos === "F" ? "pos-f" : "pos-d"}">${p.pos}</td>
-        <td>${p.gp}</td>
-        <td>${p.goals_pg != null ? p.goals_pg.toFixed(3) : "—"}</td>
-        <td>${p.xg_pg != null ? p.xg_pg.toFixed(3) : "—"}</td>
-        <td class="${p.goals_minus_xg > 0 ? "hi" : p.goals_minus_xg < -0.05 ? "lo" : ""}">${p.goals_minus_xg != null ? (p.goals_minus_xg > 0 ? "+" : "") + p.goals_minus_xg.toFixed(3) : "—"}</td>
-        <td class="${p.finishing > 1.2 ? "hi" : p.finishing < 0.85 ? "lo" : ""}">${p.finishing != null ? p.finishing.toFixed(2) + "×" : "—"}</td>
-        <td class="${p.xg_shot >= 1.5 ? "hi" : p.xg_shot <= 0.2 ? "lo" : ""}">${p.xg_shot != null ? p.xg_shot.toFixed(2) : "—"}</td>
-        <td>${p.sog_pg != null ? p.sog_pg.toFixed(2) : "—"}</td>
-      </tr>`).join("");
-
-    // Possession table
-    const ptb = document.getElementById("poss-table-body");
-    if (ptb) ptb.innerHTML = [...PLAYERS].sort((a,b) => b.corsi - a.corsi).map(p => `
-      <tr>
-        <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
-        <td>${p.pos}</td>
-        <td>${p.gp}</td>
-        <td class="${p.corsi >= 52 ? "hi" : p.corsi <= 45 ? "lo" : ""}">${p.corsi}%</td>
-        <td class="${p.fenwick >= 52 ? "hi" : p.fenwick <= 45 ? "lo" : ""}">${p.fenwick}%</td>
-        <td>${p.fo_pct != null && p.fo_n > 5 ? p.fo_pct + "%" : "—"}</td>
-        <td>${p.fo_n > 0 ? p.fo_n : "—"}</td>
-        <td>${p.sc_pct != null ? p.sc_pct + "%" : "—"}</td>
-      </tr>`).join("");
-
-    // On-ice table
-    const otb = document.getElementById("onice-table-body");
-    if (otb) otb.innerHTML = [...PLAYERS].sort((a,b) => b.net_xg_pg - a.net_xg_pg).map(p => `
-      <tr>
-        <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
-        <td>${p.pos}</td>
-        <td>${p.gp}</td>
-        <td class="${p.net_xg_pg > 0.1 ? "hi" : p.net_xg_pg < -0.15 ? "lo" : ""}">${(p.net_xg_pg > 0 ? "+" : "") + p.net_xg_pg.toFixed(2)}</td>
-        <td class="${p.plusminus_pg > 0.3 ? "hi" : p.plusminus_pg < -0.2 ? "lo" : ""}">${(p.plusminus_pg > 0 ? "+" : "") + p.plusminus_pg.toFixed(2)}</td>
-        <td class="${p.corsi >= 52 ? "hi" : p.corsi <= 45 ? "lo" : ""}">${p.corsi}%</td>
-        <td>${p.blocks_pg != null ? p.blocks_pg.toFixed(2) : "—"}</td>
-        <td>${p.shotblk_pg != null ? p.shotblk_pg.toFixed(2) : "—"}</td>
-      </tr>`).join("");
-  }
-  document.addEventListener("DOMContentLoaded", fillTables);
-</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="js/data.js"></script>
