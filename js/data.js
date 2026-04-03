@@ -128,6 +128,7 @@ const RED_PLAYERS = [
 const RED_GOALIES = [
   {
     id: "G1",
+    name: "Logan Morgida",
     games: [
       { opp: "vs Windy City Storm 13U AAA",      score: "W 3-1", ga: 1,  xga: 0.91, sv_pct: 95, saves: 21, shots: 22, gsax: -0.09 },
       { opp: "@ NJ Rockets 13U AAA",             score: "L 3-7", ga: 7,  xga: 2.20, sv_pct: 84, saves: 37, shots: 44, gsax: -4.80 },
@@ -137,6 +138,7 @@ const RED_GOALIES = [
   },
   {
     id: "G2",
+    name: "Grason Clinger",
     games: [
       { opp: "@ Golden State Eagles U14 AA",      score: "W 6-3", ga: 3, xga: 2.20, sv_pct: 90, saves: 27, shots: 30, gsax: -0.80 },
       { opp: "@ Jr. Ducks 12U AA-2 (game 1)",     score: "W 4-3", ga: 3, xga: 3.70, sv_pct: 90, saves: 26, shots: 29, gsax:  0.70 },
@@ -163,15 +165,15 @@ const RED_STRENGTHS = [
   { title: "Leibowitz drives on-ice xG", body: "+0.50 net xG/GP over 16 GP and 58% CORSI. When he's on the ice the team materially outchances opponents. He is the most impactful player by advanced metrics." },
   { title: "Center faceoff depth", body: "Van Mierlo (324 draws, 51%) and Leibowitz (291 draws, 51%) take nearly all important draws. The team doesn't lose possession after stoppages at the top end." },
   { title: "Krieger: only positive-possession D", body: "52% CORSI and 0.95 blocks/GP over 21 GP. The only D with a meaningful sample above 50% CORSI — he's both controlling play and providing a physical presence." },
-  { title: "Goalie 1 has a proven ceiling", body: "97% SV% against 4.80 xGA in one game is real evidence he can steal a game when the team needs it most." }
+  { title: "Morgida has a proven ceiling", body: "97% SV% against 4.80 xGA in one game is real evidence he can steal a game when the team needs it most." }
 ];
 
 const RED_WEAKNESSES = [
   { title: "D corps are possession liabilities", body: "Ivmark (44% CORSI, −0.53 net xG/GP over 47 GP) and Su (44%, −0.09 over 19 GP) are the two most data-reliable D readings. Both are below 50%. The defensive zone is under sustained pressure when they're on." },
   { title: "Poupyrev is net-negative on-ice", body: "Despite 48 GP and 2.90 xG/shot, his net xG/GP is −0.23. He finds elite shooting positions individually but the team gives up more xG than it creates while he's on the ice." },
   { title: "Moreau's +/- contradicts net xG", body: "Net xG/GP is +0.13 (team outchances opponents) but +/-/GP is −0.39. Consistently on the ice for goals against despite positive possession metrics — a warning sign." },
-  { title: "Goalie 2 is GSAx −5.91 over 5 games", body: "Only one game above expected goals allowed. She is systematically allowing more than the defense earns and is an active liability most nights." },
-  { title: "Goalie 1 is also net-negative overall", body: "GSAx −1.66 total is rescued by one outlier game (+3.80). Across the other three games he is −5.46 combined. Strip the outlier and both goalies are the same problem." },
+  { title: "Clinger is GSAx −5.91 over 5 games", body: "Only one game above expected goals allowed. She is systematically allowing more than the defense earns and is an active liability most nights." },
+  { title: "Morgida is also net-negative overall", body: "GSAx −1.66 total is rescued by one outlier game (+3.80). Across the other three games he is −5.46 combined. Strip the outlier and both goalies are the same problem." },
   { title: "Low scoring chance conversion", body: "Mierlo 21%, Leibowitz 15%, Poupyrev 12%, Moreau 16%. They create volume but leave a lot on the table. A sharp goalie will contain this team." }
 ];
 
@@ -180,7 +182,7 @@ const RED_GAME_PLAN = [
   { n: 2, title: "Shadow Leibowitz — he is the most dangerous player by net xG/GP", body: "+0.50 net xG/GP and 58% CORSI over 16 GP makes him the single most impactful player on this team. Assign your best two-way forward to him. If he's neutralized, this team loses its best possession driver and a scoring center simultaneously." },
   { n: 3, title: "Don't let Van Mierlo settle — he converts at 2.24× xG", body: "His shot quality (1.39 xG/shot) is real but not elite — what makes him dangerous is his elite finishing. Deny him clean looks and force contested attempts from bad angles. His finishing ratio drops if he's shooting off-balance or from the perimeter." },
   { n: 4, title: "Contest Poupyrev physically — net-negative despite elite shot quality", body: "2.90 xG/shot means every slot access is dangerous. But his −0.23 net xG/GP over 48 GP means he's already a break-even player on-ice — physical play pushes him into the negative and limits clean looks." },
-  { n: 5, title: "Attack Goalie 2 early — consistently below expected performance", body: "GSAx −5.91 over 5 games, only one above-expectation start. Early hard slot shots before she's set, screens, and rebound battles in the inner slot replicate conditions where she has underperformed by the widest margin." },
+  { n: 5, title: "Attack Clinger early — consistently below expected performance", body: "GSAx −5.91 over 5 games, only one above-expectation start. Early hard slot shots before she's set, screens, and rebound battles in the inner slot replicate conditions where she has underperformed by the widest margin." },
   { n: 6, title: "Exploit scoring chance conversion gaps", body: "Poupyrev 12%, Leibowitz 15%, Moreau 16%, Mierlo 21% scoring chance conversion. A hot goalie neutralizes this team. Position and rebound control matter more than shutting out attempts entirely." },
   { n: 7, title: "Target faceoffs against Poupyrev and Moreau", body: "Mierlo and Leibowitz at 51% on hundreds of draws are tough. But Poupyrev takes only 11 draws in 48 GP (45% win rate) and Moreau only 6 in 28 GP. Line-match your center against anyone other than these two centers for an immediate possession edge." }
 ];
@@ -197,14 +199,14 @@ const RED_OVERVIEW_FINDINGS = {
   weaknesses: [
     "Ivmark &amp; Su: both 44% CORSI on large samples",
     "Ivmark: −0.53 net xG/GP over 47 GP",
-    "Goalie 2: GSAx −5.91 over 5 games",
+    "Clinger: GSAx −5.91 over 5 games",
     "Poupyrev: −0.23 net xG/GP despite 48 GP"
   ]
 };
 
 const RED_POSS_FOOTNOTE = "* Gaudet Jr.'s 100% FO = 1 draw taken — not meaningful. ScCh% = scoring chance conversion rate.";
 
-const RED_GOALIE_NOTE = "G1 note: aggregate is rescued by one outlier game (+3.80 GSAx vs 4.80 xGA). Strip that and he is −5.46 over the other 3 games. Both goalies show the same underlying problem.";
+const RED_GOALIE_NOTE = "Morgida note: aggregate is rescued by one outlier game (+3.80 GSAx vs 4.80 xGA). Strip that and he is −5.46 over the other 3 games. Both goalies show the same underlying problem.";
 
 
 /* ── 2012 ROYAL SELECTS ────────────────────────────────────────── */
