@@ -440,6 +440,250 @@ const ROYAL_POSS_FOOTNOTE = "* Davila's 75% FO = 12 draws taken — low volume. 
 const ROYAL_GOALIE_NOTE = "Goalie 1 (25 GP): GSAx −42.01 across 25 games — systemic underperformance, negative in 17 of 25 starts. Two worst games (−6.3 and −6.0 GSAx) are extreme but strip them out and this goalie is still negative in the majority of starts. Ramon Zuniga (season aggregate, 25 GP): GSAx −33.0. Both primary goalies allow more than shot quality predicts at scale.";
 
 
+/* ── 2012 GOLD SELECTS ─────────────────────────────────────────── */
+
+const GOLD_TEAM_NAME = "2012 Gold Selects";
+
+const GOLD_PLAYERS = [
+  // ── RELIABLE SAMPLES (8+ GP) ──────────────────────────────
+  {
+    name: "Gannon Smith", pos: "F", team: "Jr. Sharks 13AAA", gp: 48, reliable: true,
+    goals_pg: 0.940, xg_pg: 0.540, goals_minus_xg: 0.400, finishing: 1.73, xg_shot: 0.14,
+    pts_pg: 1.520, ast_pg: 0.580, plusminus_pg: 0.29, net_xg_pg: 0.150,
+    corsi: 55, fenwick: 54, fo_pct: 64, fo_n: 1007, sc_pct: null,
+    hits_pg: 1.06, blocks_pg: 0.71, shotblk_pg: 0.63, sog_pg: 4.00
+  },
+  {
+    name: "Santana King", pos: "F", team: "Reapers 13AAA", gp: 58, reliable: true,
+    goals_pg: 0.280, xg_pg: 0.280, goals_minus_xg: 0.000, finishing: 1.00, xg_shot: 0.11,
+    pts_pg: 0.760, ast_pg: 0.480, plusminus_pg: 0.26, net_xg_pg: 0.450,
+    corsi: 69, fenwick: 69, fo_pct: 60, fo_n: 20, sc_pct: null,
+    hits_pg: 0.36, blocks_pg: 0.64, shotblk_pg: 0.02, sog_pg: 2.43
+  },
+  {
+    name: "Robert (Bobby) Mackay", pos: "F", team: "Jr. Ducks 13AAA", gp: 20, reliable: true,
+    goals_pg: 0.600, xg_pg: 0.350, goals_minus_xg: 0.250, finishing: 1.71, xg_shot: 0.14,
+    pts_pg: 1.150, ast_pg: 0.550, plusminus_pg: -0.20, net_xg_pg: 0.140,
+    corsi: 50, fenwick: 48, fo_pct: 77, fo_n: 13, sc_pct: null,
+    hits_pg: 0.15, blocks_pg: 0.55, shotblk_pg: 0.55, sog_pg: 2.55
+  },
+  {
+    name: "Randolph Sung", pos: "F", team: "Jr. Kings 13AAA", gp: 20, reliable: true,
+    goals_pg: 0.600, xg_pg: 0.450, goals_minus_xg: 0.150, finishing: 1.33, xg_shot: 0.16,
+    pts_pg: 1.000, ast_pg: 0.400, plusminus_pg: 0.25, net_xg_pg: 0.090,
+    corsi: 52, fenwick: 51, fo_pct: 42, fo_n: 266, sc_pct: null,
+    hits_pg: 0.90, blocks_pg: 0.45, shotblk_pg: 0.60, sog_pg: 2.80
+  },
+  {
+    name: "Boyd LeBlanc", pos: "F", team: "Jr. Ducks 13AAA", gp: 20, reliable: true,
+    goals_pg: 0.350, xg_pg: 0.290, goals_minus_xg: 0.060, finishing: 1.21, xg_shot: 0.16,
+    pts_pg: 0.900, ast_pg: 0.550, plusminus_pg: 0.35, net_xg_pg: 0.020,
+    corsi: 49, fenwick: 49, fo_pct: 44, fo_n: 16, sc_pct: null,
+    hits_pg: 0.30, blocks_pg: 0.30, shotblk_pg: 0.45, sog_pg: 1.85
+  },
+  {
+    name: "Timofey Purvins", pos: "F", team: "Jr. Kings 13AAA", gp: 21, reliable: true,
+    goals_pg: 0.290, xg_pg: 0.260, goals_minus_xg: 0.030, finishing: 1.09, xg_shot: 0.16,
+    pts_pg: 0.760, ast_pg: 0.480, plusminus_pg: 0.76, net_xg_pg: 0.330,
+    corsi: 61, fenwick: 58, fo_pct: 50, fo_n: 10, sc_pct: null,
+    hits_pg: 0.38, blocks_pg: 0.48, shotblk_pg: 0.57, sog_pg: 1.67
+  },
+  {
+    name: "Austin McDermott", pos: "D", team: "Jr. Kings 13AAA", gp: 20, reliable: true,
+    goals_pg: 0.150, xg_pg: 0.120, goals_minus_xg: 0.030, finishing: 1.20, xg_shot: 0.06,
+    pts_pg: 0.750, ast_pg: 0.600, plusminus_pg: 0.55, net_xg_pg: 0.250,
+    corsi: 56, fenwick: 53, fo_pct: null, fo_n: 0, sc_pct: null,
+    hits_pg: 0.15, blocks_pg: 1.40, shotblk_pg: 1.35, sog_pg: 2.25
+  },
+  {
+    name: "Brody Betts", pos: "D", team: "Jr. Ducks 13AAA", gp: 18, reliable: true,
+    goals_pg: 0.060, xg_pg: 0.070, goals_minus_xg: -0.010, finishing: 0.75, xg_shot: 0.08,
+    pts_pg: 0.330, ast_pg: 0.280, plusminus_pg: 0.56, net_xg_pg: -0.040,
+    corsi: 51, fenwick: 51, fo_pct: null, fo_n: 0, sc_pct: null,
+    hits_pg: 0.22, blocks_pg: 0.39, shotblk_pg: 0.50, sog_pg: 0.89
+  },
+  {
+    name: "Chris Pan", pos: "D", team: "Jr. Sharks 13AAA", gp: 48, reliable: true,
+    goals_pg: 0.060, xg_pg: 0.060, goals_minus_xg: 0.000, finishing: 1.03, xg_shot: 0.05,
+    pts_pg: 0.380, ast_pg: 0.310, plusminus_pg: -0.46, net_xg_pg: -0.420,
+    corsi: 46, fenwick: 44, fo_pct: null, fo_n: 0, sc_pct: null,
+    hits_pg: 0.06, blocks_pg: 0.69, shotblk_pg: 0.67, sog_pg: 1.33
+  },
+  // ── LIMITED SAMPLES (<8 GP) ───────────────────────────────
+  {
+    name: "Owen Colao", pos: "F", team: "TVB 14AA", gp: 4, reliable: false,
+    goals_pg: 1.000, xg_pg: 0.720, goals_minus_xg: 0.280, finishing: 1.38, xg_shot: 0.14,
+    pts_pg: 1.250, ast_pg: 0.250, plusminus_pg: 2.00, net_xg_pg: 1.300,
+    corsi: 72, fenwick: 73, fo_pct: 60, fo_n: 86, sc_pct: null,
+    hits_pg: 0.25, blocks_pg: 0.00, shotblk_pg: 0.00, sog_pg: 5.00
+  },
+  {
+    name: "Enrique Martinez", pos: "F", team: "TVB 14AA", gp: 2, reliable: false,
+    goals_pg: 1.500, xg_pg: 0.450, goals_minus_xg: 1.050, finishing: 3.33, xg_shot: 0.11,
+    pts_pg: 1.500, ast_pg: 0.000, plusminus_pg: 1.00, net_xg_pg: 0.990,
+    corsi: 74, fenwick: 73, fo_pct: 62, fo_n: 26, sc_pct: null,
+    hits_pg: 0.00, blocks_pg: 1.00, shotblk_pg: 0.00, sog_pg: 4.00
+  },
+  {
+    name: "Isaiah Ignacio", pos: "F", team: "Jr. Reign 14AA", gp: 3, reliable: false,
+    goals_pg: 0.670, xg_pg: 0.410, goals_minus_xg: 0.260, finishing: 1.63, xg_shot: 0.12,
+    pts_pg: 1.000, ast_pg: 0.330, plusminus_pg: 1.00, net_xg_pg: 0.470,
+    corsi: 65, fenwick: 61, fo_pct: 70, fo_n: 23, sc_pct: null,
+    hits_pg: 0.33, blocks_pg: 0.67, shotblk_pg: 0.33, sog_pg: 3.33
+  },
+  {
+    name: "Tanner Zhao", pos: "D", team: "TVB 14AA", gp: 4, reliable: false,
+    goals_pg: 0.000, xg_pg: 0.100, goals_minus_xg: -0.100, finishing: null, xg_shot: 0.10,
+    pts_pg: 0.000, ast_pg: 0.000, plusminus_pg: 0.25, net_xg_pg: 0.700,
+    corsi: 71, fenwick: 70, fo_pct: null, fo_n: 0, sc_pct: null,
+    hits_pg: 0.00, blocks_pg: 0.25, shotblk_pg: 0.00, sog_pg: 1.00
+  },
+  {
+    name: "Jordan Polanco", pos: "F", team: "IceDogs 14AA", gp: 1, reliable: false,
+    goals_pg: 0.000, xg_pg: 0.530, goals_minus_xg: -0.530, finishing: null, xg_shot: 0.27,
+    pts_pg: 2.000, ast_pg: 2.000, plusminus_pg: 4.00, net_xg_pg: 2.700,
+    corsi: 78, fenwick: 73, fo_pct: null, fo_n: 0, sc_pct: null,
+    hits_pg: 0.00, blocks_pg: 2.00, shotblk_pg: 0.00, sog_pg: 2.00
+  },
+  {
+    name: "Dylan Junghanel", pos: "D", team: "IceDogs 14AA", gp: 1, reliable: false,
+    goals_pg: 0.000, xg_pg: 0.340, goals_minus_xg: -0.340, finishing: null, xg_shot: 0.06,
+    pts_pg: 0.000, ast_pg: 0.000, plusminus_pg: 1.00, net_xg_pg: 1.230,
+    corsi: 59, fenwick: 54, fo_pct: null, fo_n: 0, sc_pct: null,
+    hits_pg: 1.00, blocks_pg: 1.00, shotblk_pg: 2.00, sog_pg: 6.00
+  },
+  {
+    name: "Andrew Vicente", pos: "D", team: "AVAvs 14AA", gp: 1, reliable: false,
+    goals_pg: 1.000, xg_pg: 0.610, goals_minus_xg: 0.390, finishing: 1.64, xg_shot: 0.15,
+    pts_pg: 2.000, ast_pg: 1.000, plusminus_pg: 0.00, net_xg_pg: 1.130,
+    corsi: 41, fenwick: 42, fo_pct: 59, fo_n: 17, sc_pct: null,
+    hits_pg: 0.00, blocks_pg: 2.00, shotblk_pg: 0.00, sog_pg: 4.00
+  }
+];
+
+const GOLD_GOALIES = [
+  {
+    name: "Henry McDonald",
+    games: [
+      { opp: "@ St. Louis AAA Blues 13U",          score: "W 6-2",  ga: 1, xga: 0.74, sv_pct: 92, saves: 11, shots: 12, gsax: -0.26 },
+      { opp: "vs San Jose Jr. Sharks 13O AAA",      score: "W 12-0", ga: 0, xga: 0.57, sv_pct: 100,saves: 10, shots: 10, gsax:  0.57 },
+      { opp: "@ New Jersey Rockets 13U AAA",        score: "L 5-6",  ga: 6, xga: 5.40, sv_pct: 84, saves: 31, shots: 37, gsax: -0.60 },
+      { opp: "@ Nashville Jr. Predators 13O AAA",   score: "W 3-2",  ga: 1, xga: 1.53, sv_pct: 93, saves: 14, shots: 15, gsax:  0.53 },
+      { opp: "@ Nashville Jr. Predators 13O AAA",   score: "T 2-2",  ga: 2, xga: 2.80, sv_pct: 94, saves: 30, shots: 32, gsax:  0.80 },
+      { opp: "vs San Jose Jr. Sharks 13O AAA",      score: "W 9-1",  ga: 1, xga: 1.17, sv_pct: 92, saves: 12, shots: 13, gsax:  0.17 },
+      { opp: "vs Nashville Jr. Predators 13O AAA",  score: "L 1-5",  ga: 5, xga: 3.80, sv_pct: 88, saves: 36, shots: 41, gsax: -1.20 },
+      { opp: "@ Honeybaked 13U AAA",                score: "L 1-3",  ga: 2, xga: 2.10, sv_pct: 93, saves: 26, shots: 28, gsax:  0.10 },
+      { opp: "@ San Jose Jr. Sharks 13O AAA",       score: "W 8-1",  ga: 1, xga: 0.83, sv_pct: 92, saves: 11, shots: 12, gsax: -0.17 },
+      { opp: "@ Team Illinois 13U AAA",             score: "L 1-5",  ga: 5, xga: 3.40, sv_pct: 90, saves: 47, shots: 52, gsax: -1.60 },
+      { opp: "@ Cleveland Barons 2012 Elite",       score: "L 2-4",  ga: 4, xga: 3.00, sv_pct: 89, saves: 31, shots: 35, gsax: -1.00 },
+      { opp: "vs Honeybaked 13U AAA",               score: "W 5-1",  ga: 1, xga: 1.60, sv_pct: 96, saves: 22, shots: 23, gsax:  0.60 },
+      { opp: "@ Anaheim Jr. Ducks 13U AAA",         score: "W 7-1",  ga: 0, xga: 0.03, sv_pct: 100,saves: 1,  shots: 1,  gsax:  0.03 },
+      { opp: "@ New Jersey Rockets 13U AAA",        score: "L 4-5",  ga: 5, xga: 3.20, sv_pct: 85, saves: 28, shots: 33, gsax: -1.80 }
+    ]
+  },
+  {
+    name: "Noah Min",
+    games: [
+      { opp: "@ Team Alaska 13U AAA",                      score: "L 5-9",  ga: 8, xga: 3.00, sv_pct: 73, saves: 22, shots: 30, gsax: -5.00 },
+      { opp: "vs Vegas Jr. Golden Knights 13U AAA",        score: "W 3-0",  ga: 0, xga: 1.11, sv_pct: 100,saves: 21, shots: 21, gsax:  1.11 },
+      { opp: "@ McKinney North Stars 14U AA",              score: "L 1-5",  ga: 5, xga: 2.80, sv_pct: 88, saves: 35, shots: 40, gsax: -2.20 },
+      { opp: "vs Arvada 14U AA",                           score: "W 5-2",  ga: 2, xga: 3.60, sv_pct: 95, saves: 36, shots: 38, gsax:  1.60 },
+      { opp: "vs McKinney North Stars 14U AA",             score: "L 1-2",  ga: 2, xga: 1.81, sv_pct: 91, saves: 20, shots: 22, gsax: -0.19 },
+      { opp: "@ San Jose Jr. Sharks 14U AA",               score: "L 2-6",  ga: 5, xga: 2.10, sv_pct: 72, saves: 13, shots: 18, gsax: -2.90 },
+      { opp: "vs Golden State Elite Eagles U14 AA",        score: "W 6-2",  ga: 2, xga: 1.33, sv_pct: 90, saves: 19, shots: 21, gsax: -0.67 },
+      { opp: "vs Vegas Jr. Golden Knights 13U AAA",        score: "W 5-2",  ga: 1, xga: 0.60, sv_pct: 90, saves: 9,  shots: 10, gsax: -0.40 },
+      { opp: "vs Vegas Jr. Golden Knights 13U AAA",        score: "W 6-1",  ga: 1, xga: 1.12, sv_pct: 93, saves: 14, shots: 15, gsax:  0.12 },
+      { opp: "@ Trenton Blades 13U",                       score: "W 5-0",  ga: 0, xga: 0.17, sv_pct: 100,saves: 7,  shots: 7,  gsax:  0.17 },
+      { opp: "@ Chicago Phantoms 13U AAA",                 score: "L 0-2",  ga: 1, xga: 2.60, sv_pct: 96, saves: 25, shots: 26, gsax:  1.60 },
+      { opp: "vs Madison Capitols 13U AAA",                score: "T 3-3",  ga: 3, xga: 2.30, sv_pct: 91, saves: 31, shots: 34, gsax: -0.70 },
+      { opp: "@ Los Angeles Jr. Kings 13U AAA",            score: "L 1-8",  ga: 8, xga: 3.40, sv_pct: 83, saves: 38, shots: 46, gsax: -4.60 },
+      { opp: "@ Colorado Rampage 13U AAA",                 score: "W 10-1", ga: 1, xga: 0.65, sv_pct: 92, saves: 11, shots: 12, gsax: -0.35 },
+      { opp: "@ Philadelphia Jr. Flyers 13U AAA",          score: "L 2-11", ga: 8, xga: 2.20, sv_pct: 56, saves: 10, shots: 18, gsax: -5.80 },
+      { opp: "@ Colorado Thunderbirds 13U AAA",            score: "L 3-8",  ga: 8, xga: 3.20, sv_pct: 78, saves: 29, shots: 37, gsax: -4.80 },
+      { opp: "vs Anaheim Jr. Ducks 13U AAA",               score: "L 4-6",  ga: 5, xga: 6.00, sv_pct: 90, saves: 43, shots: 48, gsax:  1.00 },
+      { opp: "vs Phoenix Jr. Coyotes 13U AAA",             score: "L 1-4",  ga: 4, xga: 3.30, sv_pct: 89, saves: 31, shots: 35, gsax: -0.70 },
+      { opp: "@ Anaheim Jr. Ducks 13U AAA",                score: "L 2-3",  ga: 3, xga: 2.60, sv_pct: 91, saves: 29, shots: 32, gsax: -0.40 },
+      { opp: "@ Phoenix Jr. Coyotes 13U AAA",              score: "L 2-6",  ga: 6, xga: 4.30, sv_pct: 88, saves: 44, shots: 50, gsax: -1.70 },
+      { opp: "vs Los Angeles Jr. Kings 13U AAA (P1)",      score: "L 1-8",  ga: 0, xga: 1.07, sv_pct: 100,saves: 10, shots: 10, gsax:  1.07 },
+      { opp: "vs Los Angeles Jr. Kings 13U AAA (P2)",      score: "L 1-8",  ga: 8, xga: 4.60, sv_pct: 83, saves: 40, shots: 48, gsax: -3.40 },
+      { opp: "vs Tampa Bulls 14U AA",                      score: "L 0-5",  ga: 5, xga: 3.50, sv_pct: 84, saves: 26, shots: 31, gsax: -1.50 },
+      { opp: "@ Boston Jr. Terriers 13U AAA",              score: "L 2-5",  ga: 5, xga: 2.90, sv_pct: 89, saves: 40, shots: 45, gsax: -2.10 },
+      { opp: "@ Anaheim Jr. Ducks 13U AAA",                score: "L 1-5",  ga: 4, xga: 3.60, sv_pct: 90, saves: 38, shots: 42, gsax: -0.40 },
+      { opp: "vs Golden State Elite Eagles U14 AA",        score: "T 4-4",  ga: 0, xga: 0.25, sv_pct: 100,saves: 7,  shots: 7,  gsax:  0.25 },
+      { opp: "@ Tri-Valley Bulls 14U AA",                  score: "L 1-5",  ga: 3, xga: 2.40, sv_pct: 90, saves: 26, shots: 29, gsax: -0.60 },
+      { opp: "@ Colorado Rampage 13U AAA",                 score: "W 4-1",  ga: 1, xga: 3.60, sv_pct: 97, saves: 33, shots: 34, gsax:  2.60 },
+      { opp: "@ Okanagan Colorado OHC 13U",                score: "L 1-2",  ga: 2, xga: 2.90, sv_pct: 95, saves: 35, shots: 37, gsax:  0.90 },
+      { opp: "@ San Jose Jr. Sharks 14U AA",               score: "L 0-2",  ga: 2, xga: 4.40, sv_pct: 94, saves: 34, shots: 36, gsax:  2.40 }
+    ]
+  },
+  {
+    name: "Calib James",
+    games: [
+      { opp: "vs NYC Hockey Club 13U AAA",     score: "W 6-3", ga: 3, xga: 2.80, sv_pct: 90, saves: 27, shots: 30, gsax: -0.20 },
+      { opp: "@ San Jose Jr. Sharks 14U AA",   score: "W 3-0", ga: 0, xga: 1.42, sv_pct: 100,saves: 19, shots: 19, gsax:  1.42 },
+      { opp: "@ NYC Hockey Club 13U AAA",      score: "L 2-3", ga: 3, xga: 2.10, sv_pct: 89, saves: 24, shots: 27, gsax: -0.90 }
+    ]
+  }
+];
+
+GOLD_GOALIES.forEach(g => {
+  g.total_saves = g.games.reduce((s,x) => s + x.saves, 0);
+  g.total_shots = g.games.reduce((s,x) => s + x.shots, 0);
+  g.total_ga    = g.games.reduce((s,x) => s + x.ga,    0);
+  g.total_xga   = +g.games.reduce((s,x) => s + x.xga,  0).toFixed(2);
+  g.total_gsax  = +g.games.reduce((s,x) => s + x.gsax, 0).toFixed(2);
+  g.sv_pct      = +((g.total_saves / g.total_shots) * 100).toFixed(1);
+  g.gsax_pg     = +(g.total_gsax / g.games.length).toFixed(2);
+});
+
+const GOLD_STRENGTHS = [
+  { title: "Elite Possession Core", body: "Santana King (CORSI 69%, 58 GP), Timofey Purvins (61%, 21 GP), and Austin McDermott (56%, 20 GP) form a possession engine that keeps the puck away from opponents. King's 69% is at the top of the AAA tier. Gannon Smith adds 55% CORSI over 48 games, making this a truly elite possession group up and down the lineup." },
+  { title: "Clinical Finishers", body: "Gannon Smith (finishing ratio 1.73 over 48 GP) and Bobby Mackay (1.71 over 20 GP) are both proven clinical finishers — they consistently score more than their shot quality predicts. Smith's 45 goals on just 26.0 xG over 48 GP is an exceptional sustained performance. These are not small-sample anomalies." },
+  { title: "Faceoff Weapon", body: "Gannon Smith took 1,007 faceoffs at 64% — a statistically massive sample at an elite winning rate. This gives the team reliable puck starts and sustained offensive-zone time. Randolph Sung (266 draws, 42%) adds volume at center, though his rate is below average and will require matchup management." },
+  { title: "High-Volume Shooting", body: "Smith generates 4.00 SOG/GP and Sung 2.80 SOG/GP, both among the top rates in this sample. Combined with above-average xG/shot (0.14 for Smith), the offense generates both volume and quality." },
+  { title: "Productive Top Three", body: "Smith (1.52 Pts/GP), Mackay (1.15), and Sung (1.00) all exceed 1.00 Pts/GP on reliable samples. The scoring depth from these three provides multiple threats that are difficult to neutralize simultaneously." }
+];
+
+const GOLD_WEAKNESSES = [
+  { title: "Goalie Vulnerability — Noah Min", body: "Noah Min has a cumulative GSAx of −25.59 over 30 GP (−0.85/game) — he consistently allows more goals than shot quality predicts. Four games saw GSAx below −3.0, including −5.80 vs. Philadelphia and −5.00 vs. Team Alaska. This is the team's most significant liability. High-xGA environments will likely produce results below expected." },
+  { title: "Chris Pan — Possession Liability", body: "Pan carries a CORSI of 46% and net xG/GP of −0.42 over 48 GP — a large, reliable sample. Opponents control the puck and outchance the team when he is on the ice. This is a consistent, statistically significant weakness in the defensive corps. His +/− of −22 corroborates the advanced metrics." },
+  { title: "Thin Reliable Depth", body: "Only 9 skaters have 8+ GP. The top three forwards (Smith, King, Mackay) carry a disproportionate share of production. If opponents can neutralize those three or any are unavailable, the team's offensive output drops sharply. Most limited-sample players (TVB, IceDogs, AVAvs) appeared in 1–4 games." },
+  { title: "Defensive Core Net-Negative", body: "Both reliable defensemen with meaningful net xG data skew negative: Chris Pan (−0.42/GP) and Brody Betts (−0.04/GP). Austin McDermott is the exception (+0.25/GP, CORSI 56%), but is the only positive-possession reliable defender. The backend is a net drag on the team's on-ice impact." },
+  { title: "Henry McDonald — Slight Underperformer", body: "McDonald's cumulative GSAx is −3.83 over 14 GP (−0.27/game). While less alarming than Min's numbers, the trend is consistent underperformance vs. shot quality. In tight games, below-expected goaltending adds up." }
+];
+
+const GOLD_GAME_PLAN = [
+  { n: 1, title: "Attack Through Chris Pan — Expose the Liability", body: "Pan has a CORSI of 46% and net xG/GP of −0.42 over a 48-game reliable sample. When he is on the ice, his team generates fewer shot attempts and fewer quality chances than the opponent. Identify his shifts and generate sustained zone pressure during his ice time. Target the slot — his side. His +/− of −22 shows this translates directly to goals against." },
+  { n: 2, title: "Force Noah Min Into High-Danger Situations", body: "Min's GSAx of −0.85/game over 30 GP is the team's biggest tactical weakness. He consistently allows more goals than the shot quality warrants, especially in high-volume games. Prioritize inner-slot shots, cycling plays that generate sustained zone time. In three separate games he posted GSAx below −4.0. The more chances you generate, the more his tendency to underperform will manifest." },
+  { n: 3, title: "Neutralize Gannon Smith — All Three Zones", body: "Smith is the engine of this team: 1.52 Pts/GP, finishing ratio 1.73, 4.00 SOG/GP, CORSI 55%, 64% faceoff rate over 1,007 draws. He must be matched against your strongest shutdown center for faceoffs. Physically contest him in all three zones and limit his inner-slot opportunities. His xG/shot of 0.14 shows he shoots from quality positions, not the perimeter." },
+  { n: 4, title: "Win the Faceoff Battle Against Smith", body: "Smith's 1,007 faceoff sample at 64% is elite. Losing faceoffs to him in the defensive zone leads to direct shot attempts and sustained pressure. Send your best faceoff forward against him exclusively, and have your defensemen prepared for immediate puck battles after draws. Randolph Sung (266 draws, 42%) is beatable in faceoffs — target his draws in the offensive zone." },
+  { n: 5, title: "Disrupt Santana King's Possession Game", body: "King posts a CORSI of 69% over 58 GP — genuinely elite at the AAA level. He doesn't score at an elite rate (0.28 Pts/GP) but his on-ice presence (net xG/GP +0.45) shows he systematically tilts the shot-attempt balance. Match a physical, defensively responsible forward against him. Deny him clean puck retrievals and cut off his breakout passes." },
+  { n: 6, title: "Contain Purvins With Size and Physicality", body: "Purvins posts a CORSI of 61% and net xG of +0.33/GP over 21 GP. His possession numbers are elite for his age group. He has 0.48 A/GP suggesting he creates offense through distribution. Match a larger, defensive-minded wing against him. Deny him time and space in the neutral zone — he excels at clean entries." },
+  { n: 7, title: "Exploit Roster Depth Gaps in Extended Games", body: "Only 9 skaters have 8+ GP. The team's core three (Smith, King, Mackay) carry the offensive load. In tournaments or back-to-back situations where Smith's ice time is managed, scoring depth drops off significantly. Use aggressive, high-energy forechecks to tire out their top players early and force their depth into high-pressure situations." }
+];
+
+const GOLD_RADAR_DATA = [8, 6, 6, 5, 7, 8, 4, 5];
+
+const GOLD_OVERVIEW_FINDINGS = {
+  strengths: [
+    "Smith: 1.73× finishing ratio (48 GP)",
+    "King: +0.45 net xG/GP — elite on-ice impact",
+    "King: 69% CORSI over 58 GP",
+    "Smith: 64% FO rate on 1,007 draws"
+  ],
+  weaknesses: [
+    "Noah Min: GSAx −0.85/game over 30 GP",
+    "Chris Pan: 46% CORSI, −0.42 net xG/GP over 48 GP",
+    "Only 9 skaters with 8+ GP",
+    "Defensive core net-negative overall"
+  ]
+};
+
+const GOLD_POSS_FOOTNOTE = "FO% shown only for players with >5 draws taken. ScCh% not available for Gold players.";
+
+const GOLD_GOALIE_NOTE = "Noah Min (30 GP): GSAx −25.59 (−0.85/game) — systematic underperformance. Four games below −3.0 GSAx, including −5.80 vs. Philadelphia and −5.00 vs. Team Alaska. Henry McDonald (14 GP): GSAx −3.83 (−0.27/game). Calib James: 3 GP only — limited sample. Both primary goalies trend negative vs. shot quality.";
+
+
 /* ── Active team pointer (set by app.js switchTeam) ── */
 // Starts on Red to match existing behaviour
 let PLAYERS    = RED_PLAYERS;

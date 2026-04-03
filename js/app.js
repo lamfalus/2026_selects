@@ -75,7 +75,7 @@ function switchTeam(team) {
     OVERVIEW_FINDINGS = RED_OVERVIEW_FINDINGS;
     POSS_FOOTNOTE     = RED_POSS_FOOTNOTE;
     GOALIE_NOTE       = RED_GOALIE_NOTE;
-  } else {
+  } else if (team === "royal") {
     PLAYERS           = ROYAL_PLAYERS;
     GOALIES           = ROYAL_GOALIES;
     STRENGTHS         = ROYAL_STRENGTHS;
@@ -86,6 +86,17 @@ function switchTeam(team) {
     OVERVIEW_FINDINGS = ROYAL_OVERVIEW_FINDINGS;
     POSS_FOOTNOTE     = ROYAL_POSS_FOOTNOTE;
     GOALIE_NOTE       = ROYAL_GOALIE_NOTE;
+  } else {
+    PLAYERS           = GOLD_PLAYERS;
+    GOALIES           = GOLD_GOALIES;
+    STRENGTHS         = GOLD_STRENGTHS;
+    WEAKNESSES        = GOLD_WEAKNESSES;
+    GAME_PLAN         = GOLD_GAME_PLAN;
+    TEAM_NAME         = GOLD_TEAM_NAME;
+    RADAR_DATA        = GOLD_RADAR_DATA;
+    OVERVIEW_FINDINGS = GOLD_OVERVIEW_FINDINGS;
+    POSS_FOOTNOTE     = GOLD_POSS_FOOTNOTE;
+    GOALIE_NOTE       = GOLD_GOALIE_NOTE;
   }
 
   // Update sidebar title
@@ -189,9 +200,7 @@ function buildOverview() {
     </div>`;
 
   // Radar
-  const radarLabels = activeTeam === "red"
-    ? ["Finishing quality","Shot danger","F possession","D possession","On-ice xG impact","Faceoffs","Goalie perf.","Scoring ch. conv."]
-    : ["Finishing quality","Shot danger","F possession","D possession","On-ice xG impact","Faceoffs","Goalie perf.","Scoring ch. conv."];
+  const radarLabels = ["Finishing quality","Shot danger","F possession","D possession","On-ice xG impact","Faceoffs","Goalie perf.","Scoring ch. conv."];
 
   makeChart("ov-radar", {
     type: "radar",
