@@ -86,7 +86,7 @@ function switchTeam(team) {
     OVERVIEW_FINDINGS = ROYAL_OVERVIEW_FINDINGS;
     POSS_FOOTNOTE     = ROYAL_POSS_FOOTNOTE;
     GOALIE_NOTE       = ROYAL_GOALIE_NOTE;
-  } else {
+  } else if (team === "gold") {
     PLAYERS           = GOLD_PLAYERS;
     GOALIES           = GOLD_GOALIES;
     STRENGTHS         = GOLD_STRENGTHS;
@@ -97,6 +97,17 @@ function switchTeam(team) {
     OVERVIEW_FINDINGS = GOLD_OVERVIEW_FINDINGS;
     POSS_FOOTNOTE     = GOLD_POSS_FOOTNOTE;
     GOALIE_NOTE       = GOLD_GOALIE_NOTE;
+  } else {
+    PLAYERS           = PURPLE_PLAYERS;
+    GOALIES           = PURPLE_GOALIES;
+    STRENGTHS         = PURPLE_STRENGTHS;
+    WEAKNESSES        = PURPLE_WEAKNESSES;
+    GAME_PLAN         = PURPLE_GAME_PLAN;
+    TEAM_NAME         = PURPLE_TEAM_NAME;
+    RADAR_DATA        = PURPLE_RADAR_DATA;
+    OVERVIEW_FINDINGS = PURPLE_OVERVIEW_FINDINGS;
+    POSS_FOOTNOTE     = PURPLE_POSS_FOOTNOTE;
+    GOALIE_NOTE       = PURPLE_GOALIE_NOTE;
   }
 
   // Update sidebar title

@@ -113,7 +113,8 @@ body {
 }
 .ts-dot-red   { background: #e04040; }
 .ts-dot-royal { background: #2563eb; }
-.ts-dot-gold  { background: #d4a017; }
+.ts-dot-gold   { background: #d4a017; }
+.ts-dot-purple { background: #7c3aed; }
 
 /* ── App Shell ──────────────────────────────── */
 .app-shell {

@@ -684,6 +684,234 @@ const GOLD_POSS_FOOTNOTE = "FO% shown only for players with >5 draws taken. ScCh
 const GOLD_GOALIE_NOTE = "Noah Min (30 GP): GSAx −25.59 (−0.85/game) — systematic underperformance. Four games below −3.0 GSAx, including −5.80 vs. Philadelphia and −5.00 vs. Team Alaska. Henry McDonald (14 GP): GSAx −3.83 (−0.27/game). Calib James: 3 GP only — limited sample. Both primary goalies trend negative vs. shot quality.";
 
 
+/* ── 2012 PURPLE SELECTS ───────────────────────────────────────── */
+
+const PURPLE_TEAM_NAME = "2012 Purple Selects";
+
+const PURPLE_PLAYERS = [
+  // ── RELIABLE SAMPLES (8+ GP) ──────────────────────────────
+  // Forwards
+  {
+    name: "Cameron Panza", pos: "F", team: "Jr. Kings 13AAA", gp: 21, reliable: true,
+    goals_pg: 0.333, xg_pg: 0.267, goals_minus_xg: 0.066, finishing: 1.25, xg_shot: 1.48,
+    pts_pg: 0.952, ast_pg: 0.619, plusminus_pg: 0.29, net_xg_pg: 0.476,
+    corsi: 60, fenwick: 60, fo_pct: null, fo_n: 6, sc_pct: 16,
+    hits_pg: 0.19, blocks_pg: 0.381, shotblk_pg: null, sog_pg: 2.19
+  },
+  {
+    name: "Lennox Lucas", pos: "F", team: "Jr. Kings 13AAA", gp: 18, reliable: true,
+    goals_pg: 0.333, xg_pg: 0.317, goals_minus_xg: 0.016, finishing: 1.05, xg_shot: 1.20,
+    pts_pg: 0.778, ast_pg: 0.444, plusminus_pg: 0.00, net_xg_pg: 0.150,
+    corsi: 57, fenwick: 56, fo_pct: 78, fo_n: 27, sc_pct: 16,
+    hits_pg: 0.667, blocks_pg: 0.333, shotblk_pg: 0.111, sog_pg: 2.333
+  },
+  {
+    name: "Ryan Kelly", pos: "F", team: "Jr. Kings 13AAA", gp: 21, reliable: true,
+    goals_pg: 0.238, xg_pg: 0.210, goals_minus_xg: 0.028, finishing: 1.14, xg_shot: 1.41,
+    pts_pg: 0.381, ast_pg: 0.143, plusminus_pg: 0.29, net_xg_pg: 0.019,
+    corsi: 58, fenwick: 56, fo_pct: 25, fo_n: 8, sc_pct: 19,
+    hits_pg: 0.667, blocks_pg: 0.571, shotblk_pg: 0.190, sog_pg: 1.571
+  },
+  {
+    name: "Kai Yi", pos: "F", team: "Jr. Ducks 13AAA", gp: 18, reliable: true,
+    goals_pg: 0.167, xg_pg: 0.144, goals_minus_xg: 0.023, finishing: 1.15, xg_shot: 1.15,
+    pts_pg: 0.444, ast_pg: 0.278, plusminus_pg: -0.22, net_xg_pg: -0.071,
+    corsi: 49, fenwick: 48, fo_pct: 46, fo_n: 57, sc_pct: 18,
+    hits_pg: 0.056, blocks_pg: 0.500, shotblk_pg: 0.222, sog_pg: 1.556
+  },
+  {
+    name: "Dylan Cruz", pos: "F", team: "Jr. Ducks 13AAA", gp: 20, reliable: true,
+    goals_pg: 0.350, xg_pg: 0.300, goals_minus_xg: 0.050, finishing: 1.17, xg_shot: 1.90,
+    pts_pg: 0.700, ast_pg: 0.350, plusminus_pg: 0.00, net_xg_pg: -0.120,
+    corsi: 47, fenwick: 47, fo_pct: 46, fo_n: 214, sc_pct: 15,
+    hits_pg: 0.700, blocks_pg: 0.300, shotblk_pg: 0.400, sog_pg: 2.300
+  },
+  {
+    name: "Mason Shelby", pos: "F", team: "Jr. Sharks 13AAA", gp: 40, reliable: true,
+    goals_pg: 0.175, xg_pg: 0.275, goals_minus_xg: -0.100, finishing: 0.64, xg_shot: 3.00,
+    pts_pg: 0.350, ast_pg: 0.175, plusminus_pg: -1.00, net_xg_pg: -0.350,
+    corsi: 44, fenwick: 41, fo_pct: 45, fo_n: 212, sc_pct: 11,
+    hits_pg: 0.325, blocks_pg: 0.375, shotblk_pg: 0.200, sog_pg: 1.750
+  },
+  // Defensemen (reliable)
+  {
+    name: "Mason Reyes", pos: "D", team: "Reapers 13AAA", gp: 57, reliable: true,
+    goals_pg: 0.140, xg_pg: 0.072, goals_minus_xg: 0.068, finishing: 1.95, xg_shot: 1.14,
+    pts_pg: 0.333, ast_pg: 0.193, plusminus_pg: 0.33, net_xg_pg: 0.439,
+    corsi: 69, fenwick: 70, fo_pct: null, fo_n: 0, sc_pct: 15,
+    hits_pg: 0.474, blocks_pg: 0.544, shotblk_pg: 0.982, sog_pg: 1.544
+  },
+  {
+    name: "Alexander Lamfalusi", pos: "D", team: "Jr. Sharks 13AAA", gp: 48, reliable: true,
+    goals_pg: 0.062, xg_pg: 0.083, goals_minus_xg: -0.021, finishing: 0.75, xg_shot: 1.32,
+    pts_pg: 0.438, ast_pg: 0.375, plusminus_pg: -0.44, net_xg_pg: -0.208,
+    corsi: 51, fenwick: 47, fo_pct: null, fo_n: 0, sc_pct: 5,
+    hits_pg: 0.896, blocks_pg: 0.812, shotblk_pg: 0.646, sog_pg: 1.458
+  },
+  {
+    name: "Jacob Quire", pos: "D", team: "Jr. Ducks 13AAA", gp: 20, reliable: true,
+    goals_pg: 0.150, xg_pg: 0.045, goals_minus_xg: 0.105, finishing: 3.30, xg_shot: 0.64,
+    pts_pg: 0.450, ast_pg: 0.300, plusminus_pg: 0.00, net_xg_pg: -0.063,
+    corsi: 50, fenwick: 50, fo_pct: null, fo_n: 0, sc_pct: 67,
+    hits_pg: 0.100, blocks_pg: 0.500, shotblk_pg: 0.400, sog_pg: 1.100
+  },
+  {
+    name: "Benjamin Kudla", pos: "D", team: "Jr. Kings 13AAA", gp: 21, reliable: true,
+    goals_pg: 0.048, xg_pg: 0.067, goals_minus_xg: -0.019, finishing: 0.71, xg_shot: 0.50,
+    pts_pg: 0.286, ast_pg: 0.238, plusminus_pg: 0.67, net_xg_pg: 0.167,
+    corsi: 58, fenwick: 56, fo_pct: null, fo_n: 0, sc_pct: 25,
+    hits_pg: 0.381, blocks_pg: 0.762, shotblk_pg: 0.667, sog_pg: 1.286
+  },
+  // ── LIMITED SAMPLES (<8 GP) ───────────────────────────────
+  {
+    name: "Charles Connelly", pos: "F", team: "IceDogs 14AA", gp: 1, reliable: false,
+    goals_pg: 2.000, xg_pg: 1.910, goals_minus_xg: 0.090, finishing: 1.05, xg_shot: 0.16,
+    pts_pg: 3.000, ast_pg: 1.000, plusminus_pg: 4.00, net_xg_pg: 2.600,
+    corsi: 74, fenwick: 70, fo_pct: 38, fo_n: 16, sc_pct: 18,
+    hits_pg: null, blocks_pg: null, shotblk_pg: null, sog_pg: 10.000
+  },
+  {
+    name: "Samuel Hodel", pos: "F", team: "TVB 14AA", gp: 2, reliable: false,
+    goals_pg: 2.500, xg_pg: 1.750, goals_minus_xg: 0.750, finishing: 1.43, xg_shot: 0.23,
+    pts_pg: 2.500, ast_pg: null, plusminus_pg: 3.00, net_xg_pg: 1.350,
+    corsi: 68, fenwick: 69, fo_pct: 52, fo_n: 21, sc_pct: 28,
+    hits_pg: 1.500, blocks_pg: 1.500, shotblk_pg: 2.000, sog_pg: 10.000
+  },
+  {
+    name: "Nicholas Allen", pos: "F", team: "TVB 14AA", gp: 4, reliable: false,
+    goals_pg: 0.750, xg_pg: 0.525, goals_minus_xg: 0.225, finishing: 1.43, xg_shot: 0.35,
+    pts_pg: 1.000, ast_pg: 0.250, plusminus_pg: 1.50, net_xg_pg: 0.477,
+    corsi: 56, fenwick: 55, fo_pct: null, fo_n: 1, sc_pct: 15,
+    hits_pg: null, blocks_pg: 0.250, shotblk_pg: 0.250, sog_pg: 4.500
+  },
+  {
+    name: "Cade Shipley", pos: "F", team: "Jr. Reign 14AA", gp: 3, reliable: false,
+    goals_pg: null, xg_pg: 0.153, goals_minus_xg: null, finishing: null, xg_shot: 0.16,
+    pts_pg: null, ast_pg: null, plusminus_pg: -1.00, net_xg_pg: -0.250,
+    corsi: 57, fenwick: 55, fo_pct: 71, fo_n: 14, sc_pct: null,
+    hits_pg: null, blocks_pg: 0.667, shotblk_pg: null, sog_pg: 1.667
+  },
+  {
+    name: "Chase Offers", pos: "D", team: "TVB 14AA", gp: 4, reliable: false,
+    goals_pg: 0.250, xg_pg: 0.158, goals_minus_xg: 0.092, finishing: 1.59, xg_shot: 0.14,
+    pts_pg: 1.250, ast_pg: 1.000, plusminus_pg: 1.50, net_xg_pg: 0.650,
+    corsi: 70, fenwick: 71, fo_pct: null, fo_n: 1, sc_pct: null,
+    hits_pg: null, blocks_pg: 0.750, shotblk_pg: 0.500, sog_pg: 3.500
+  },
+  {
+    name: "Jonah Throop", pos: "D", team: "Jr. Sharks 13AAA", gp: 5, reliable: false,
+    goals_pg: 0.000, xg_pg: 0.014, goals_minus_xg: -0.014, finishing: null, xg_shot: 0.02,
+    pts_pg: 0.000, ast_pg: 0.000, plusminus_pg: 0.60, net_xg_pg: 0.520,
+    corsi: 69, fenwick: null, fo_pct: null, fo_n: 4, sc_pct: null,
+    hits_pg: 0.000, blocks_pg: 0.200, shotblk_pg: 0.000, sog_pg: 0.800
+  }
+];
+
+const PURPLE_GOALIES = [
+  {
+    id: "G1",
+    name: "Donovan Chavez",
+    games: [
+      { opp: "@ St. Louis AAA Blues 13U",          score: "W 6-2", ga: 1,  xga: 0.35, sv_pct: 86,  saves: 6,  shots: 7,  gsax: -0.65 },
+      { opp: "@ Nashville Jr. Predators 13O AAA",  score: "W 3-2", ga: 1,  xga: 1.16, sv_pct: 94,  saves: 17, shots: 18, gsax:  0.16 },
+      { opp: "vs Pittsburgh Penguins Elite 13U",    score: "W 3-2", ga: 2,  xga: 2.80, sv_pct: 95,  saves: 37, shots: 39, gsax:  0.80 },
+      { opp: "vs San Jose Jr. Sharks 13O AAA",      score: "W 8-1", ga: 1,  xga: 0.39, sv_pct: 89,  saves: 8,  shots: 9,  gsax: -0.61 },
+      { opp: "@ Cleveland Barons 2012 Elite",       score: "W 3-2", ga: 2,  xga: 0.90, sv_pct: 92,  saves: 22, shots: 24, gsax: -1.10 },
+      { opp: "@ New Jersey Rockets 13U AAA",        score: "L 3-4", ga: 4,  xga: 1.94, sv_pct: 87,  saves: 27, shots: 31, gsax: -2.06 },
+      { opp: "@ Belle Tire U13 AAA",               score: "W 1-0", ga: 0,  xga: 1.09, sv_pct: 100, saves: 15, shots: 15, gsax:  1.09 },
+      { opp: "@ San Jose Jr. Sharks 13O AAA (2)",   score: "W 8-1", ga: 1,  xga: 0.90, sv_pct: 93,  saves: 14, shots: 15, gsax: -0.10 },
+      { opp: "@ Anaheim Jr. Ducks 13U AAA",         score: "W 7-1", ga: 1,  xga: 0.24, sv_pct: 80,  saves: 4,  shots: 5,  gsax: -0.76 },
+      { opp: "@ Reapers Hockey U13",               score: "W 3-2", ga: 2,  xga: 2.30, sv_pct: 93,  saves: 27, shots: 29, gsax:  0.30 }
+    ]
+  },
+  {
+    id: "G2",
+    name: "Gavin Reskey",
+    games: [
+      { opp: "@ Team Illinois 13U AAA",             score: "L 1-6",  ga: 4,  xga: 1.47, sv_pct: 76,  saves: 13, shots: 17, gsax: -2.53 },
+      { opp: "vs Milwaukee Jr. Admirals U13 AAA",   score: "W 7-3",  ga: 3,  xga: 2.60, sv_pct: 92,  saves: 33, shots: 36, gsax: -0.40 },
+      { opp: "vs Buffalo Jr. Sabres 13U AAA",       score: "W 5-2",  ga: 2,  xga: 2.40, sv_pct: 93,  saves: 25, shots: 27, gsax:  0.40 },
+      { opp: "@ San Jose Jr. Sharks 13O AAA (1)",   score: "W 6-4",  ga: 4,  xga: 1.91, sv_pct: 86,  saves: 25, shots: 29, gsax: -2.09 },
+      { opp: "vs San Jose Jr. Sharks 13O AAA (2)",  score: "W 3-2",  ga: 2,  xga: 1.59, sv_pct: 91,  saves: 20, shots: 22, gsax: -0.41 },
+      { opp: "vs Windy City Storm 13U AAA",         score: "L 1-7",  ga: 3,  xga: 1.01, sv_pct: 77,  saves: 10, shots: 13, gsax: -1.99 },
+      { opp: "@ St. Louis AAA Blues 13U",           score: "W 6-2",  ga: 2,  xga: 2.30, sv_pct: 94,  saves: 31, shots: 33, gsax:  0.30 },
+      { opp: "vs San Jose Jr. Sharks 13O AAA (3)",  score: "W 5-1",  ga: 1,  xga: 1.15, sv_pct: 96,  saves: 22, shots: 23, gsax:  0.15 },
+      { opp: "vs Los Angeles Jr. Kings 13U AAA",    score: "W 7-1",  ga: 0,  xga: 0.00, sv_pct: 100, saves: 0,  shots: 0,  gsax:  0.00 },
+      { opp: "vs Phoenix Jr. Coyotes 13U AAA (1)",  score: "W 5-1",  ga: 1,  xga: 0.49, sv_pct: 86,  saves: 6,  shots: 7,  gsax: -0.51 },
+      { opp: "vs Phoenix Jr. Coyotes 13U AAA (2)",  score: "W 5-4",  ga: 4,  xga: 1.52, sv_pct: 80,  saves: 16, shots: 20, gsax: -2.48 },
+      { opp: "@ New Jersey Rockets 13U AAA",        score: "L 2-10", ga: 10, xga: 7.00, sv_pct: 79,  saves: 37, shots: 47, gsax: -3.00 }
+    ]
+  },
+  {
+    id: "G3",
+    name: "Kyle Liu",
+    games: [
+      { opp: "@ San Jose Jr. Sharks 14U AA",    score: "W 5-2", ga: 2, xga: 1.14, sv_pct: 90, saves: 18, shots: 20, gsax: -0.86 },
+      { opp: "@ San Jose Jr. Sharks 14U AAA",   score: "T 2-2", ga: 2, xga: 2.20, sv_pct: 94, saves: 32, shots: 34, gsax:  0.20 },
+      { opp: "vs San Jose Jr. Sharks 14U AA",   score: "W 7-1", ga: 1, xga: 0.61, sv_pct: 94, saves: 16, shots: 17, gsax: -0.39 },
+      { opp: "@ New York Saints 14U AAA",       score: "L 0-1", ga: 1, xga: 0.85, sv_pct: 93, saves: 13, shots: 14, gsax: -0.15 }
+    ]
+  }
+];
+
+PURPLE_GOALIES.forEach(g => {
+  g.total_saves = g.games.reduce((s,x) => s + x.saves, 0);
+  g.total_shots = g.games.reduce((s,x) => s + x.shots, 0);
+  g.total_ga    = g.games.reduce((s,x) => s + x.ga,    0);
+  g.total_xga   = +g.games.reduce((s,x) => s + x.xga,  0).toFixed(2);
+  g.total_gsax  = +g.games.reduce((s,x) => s + x.gsax, 0).toFixed(2);
+  g.sv_pct      = g.total_shots > 0 ? +((g.total_saves / g.total_shots) * 100).toFixed(1) : 0;
+  g.gsax_pg     = +(g.total_gsax / g.games.length).toFixed(2);
+});
+
+const PURPLE_STRENGTHS = [
+  { title: "Jr. Kings bloc: best possession group in the pool", body: "Lucas (57% CORSI, 18 GP), Kelly (58%, 21 GP), Panza (60%, 21 GP), and Kudla (58%, 21 GP) all post reliable positive-possession readings. No other club in this pool fields four skaters above 57% CORSI simultaneously on meaningful samples. Panza leads with +0.476 net xG/GP — the team's best on-ice impact player." },
+  { title: "Mason Reyes: elite defensive possession driver", body: "69% CORSI and +0.439 net xG/GP over 57 GP — the largest reliable sample in the pool. His 1.95× finishing ratio means he scores nearly twice what his shot quality predicts. He is the only defenseman in this pool who combines elite possession (>65% CORSI) with a meaningful positive net xG/GP on a 50+ GP dataset." },
+  { title: "Cameron Panza: most dangerous forward by on-ice impact", body: "+0.476 net xG/GP over 21 GP with 60% CORSI. When Panza is on the ice, his team materially outchances opponents. 1.25× finishing ratio confirms he converts at above-expected rates. He is the player most responsible for translating possession into scoring chances." },
+  { title: "High-danger shot quality across the forward group", body: "Shelby generates 3.00 xG/shot over 40 GP — meaning every shot he takes comes from the inner slot. Cruz (1.90), Kelly (1.41), and Panza (1.48) also attack from dangerous positions. Multiple forwards consistently find high-danger opportunities, making this team difficult to contain from the perimeter alone." },
+  { title: "Chavez is a competent starting goalie", body: "SV% 92.2% and GSAx −0.29/GP over 10 GP. While slightly negative, Chavez performs close to expected and has shown he can steal games — including a +1.09 GSAx shutout vs Belle Tire. Relative to Reskey, he is a materially better option." }
+];
+
+const PURPLE_WEAKNESSES = [
+  { title: "Mason Shelby: primary possession liability among forwards", body: "44% CORSI on 40 GP (largest forward sample in the pool) and −0.35 net xG/GP. Despite 3.00 xG/shot — elite shot quality — he converts at only 0.64× xG. His shifts actively hurt the team: opponents control the puck and outchance his team when he's on ice. This is not variance; 40 GP confirms the pattern." },
+  { title: "Jr. Ducks bloc both below 50% CORSI", body: "Yi (49%, 18 GP) and Cruz (47%, 20 GP) are consistent possession liabilities. Cruz is the primary faceoff center — 214 draws at 46% is a reliable indicator of below-average faceoff performance. When the Jr. Ducks line is on, the team cedes puck control at even strength." },
+  { title: "Gavin Reskey: systemic goalie underperformance", body: "GSAx −12.56 over 12 GP (−1.05/GP). Negative in 9 of 12 starts. Worst games: −3.00 vs NJ Rockets (GA=10, xGA=7.0) and −2.53 vs Team Illinois. Even in games his team won, he consistently allowed more than expected. This is the team's most significant tactical liability." },
+  { title: "Lamfalusi: net-negative on-ice impact over 48 GP", body: "Despite 51% CORSI, his net xG/GP is −0.208 over 48 GP — the largest sample in the pool. He controls possession at neutral levels but concedes more shot quality than he generates. His 4.5% scoring chance conversion rate (3 goals on ~67 scoring chances) reflects chronic underperformance in dangerous situations." },
+  { title: "Faceoff deficit at primary centers", body: "Cruz (214 draws, 46%) and Yi (57 draws, 46%) handle the majority of draws at below-average rates. The team has no reliable faceoff weapon. Lucas (78% on 27 draws) is the only above-average rate but the volume is too small to be definitive." }
+];
+
+const PURPLE_GAME_PLAN = [
+  { n: 1, title: "Neutralize Cameron Panza — primary shutdown priority", body: "+0.476 net xG/GP over 21 GP, 60% CORSI, 1.25× finishing. He is the single most impactful forward by advanced metrics. Assign your best defensive forward to shadow him. Deny zone entries and force him wide of the slot — his finishing advantage disappears if he's shooting from the perimeter or off-balance. If Panza is neutralized, the team loses its top possession driver and scoring threat simultaneously." },
+  { n: 2, title: "Contest Reyes at the blue line — disrupt the possession engine", body: "69% CORSI on 57 GP is the most reliable elite-possession reading in the pool. He drives zone entries and generates +0.439 net xG/GP. Force him to move the puck quickly under pressure and deny him clean D-to-D passes. When Reyes can't walk the puck in uncontested, the team's breakout efficiency collapses and the Jr. Kings' possession advantage narrows." },
+  { n: 3, title: "Attack Reskey early and often — exploit systemic underperformance", body: "GSAx −1.05/GP over 12 GP — negative in 9 of 12 starts. His worst games follow sustained shot volume. Strategy: sustained offensive zone shifts, inner-slot shots on first opportunity, hard puck battles in front. The NJ Rockets game (10 GA, 7.0 xGA, GSAx −3.00) shows what happens when volume pressure mounts. Do not allow Chavez to enter in relief without creating a situation where the game is already compromised." },
+  { n: 4, title: "Forecheck hard on Shelby's shifts — his line is a possession liability", body: "44% CORSI on 40 GP means Shelby's team cedes puck control. A sustained forecheck targeting his line generates turnovers at a statistically reliable rate. Despite his 3.00 xG/shot, he underperforms expected goals at 0.64× — force contested shots and shots from bad angles. His finishing gap widens when he's shooting off-balance." },
+  { n: 5, title: "Exploit Cruz faceoff losses — win the draw and go to the slot", body: "Cruz takes 214 draws at 46% — a large, reliable sample of below-average faceoff performance. Win the majority of draws against him and drive immediately to the inner slot. His CORSI 47% confirms that even when Cruz wins a draw, his line doesn't sustain zone control. The combination of faceoff losses and weak puck retrievals makes his line a repeatable source of offensive zone time." },
+  { n: 6, title: "Pressure the Jr. Ducks line on breakouts", body: "Yi (49% CORSI, 18 GP) and Cruz (47%, 20 GP) are confirmed possession liabilities on meaningful samples. Apply aggressive neutral-zone pressure when this line is breaking out. Force turnovers in the neutral zone and transition to quick attack entries. Their combined CORSI below 50% means they cede possession more often than they hold it — a sustained forecheck will compound this." },
+  { n: 7, title: "Target Lamfalusi's side in the offensive zone", body: "−0.208 net xG/GP over 48 GP — the largest sample in the pool and the most reliable evidence of a defensive liability. Despite 51% CORSI (neutral possession), his side consistently gives up more shot quality than it generates. Cycle plays directed to his side, particularly in the inner slot, convert at above-expected rates against him." }
+];
+
+const PURPLE_RADAR_DATA = [7, 7, 5, 7, 6, 3, 3, 4];
+
+const PURPLE_OVERVIEW_FINDINGS = {
+  strengths: [
+    "Panza: +0.476 net xG/GP — top forward impact (21 GP)",
+    "Reyes: 69% CORSI, +0.439 net xG/GP over 57 GP",
+    "Jr. Kings bloc: all four skaters 57–60% CORSI",
+    "Shelby: 3.0 xG/shot — elite inner-slot threat (40 GP)"
+  ],
+  weaknesses: [
+    "Shelby: 44% CORSI, −0.35 net xG/GP over 40 GP",
+    "Reskey: GSAx −1.05/GP over 12 GP (systemic)",
+    "Cruz: primary FO center at 46% on 214 draws",
+    "Lamfalusi: −0.208 net xG/GP over 48 GP"
+  ]
+};
+
+const PURPLE_POSS_FOOTNOTE = "* Lucas 78% FO on 27 draws — moderate volume, promising but not definitive. Cruz 46% on 214 draws and Yi 46% on 57 draws are the most reliable FO readings. Quire SC% 67% = 3 goals on ~4 scoring chances over 20 GP — very small base, use with caution. Lamfalusi SC% 4.5% reflects high scoring-chance volume (~67 SC over 48 GP, only 3 goals).";
+
+const PURPLE_GOALIE_NOTE = "Donovan Chavez (10 GP): GSAx −2.93 (−0.29/GP) — modestly negative across 10 starts; best game +1.09 GSAx (shutout vs Belle Tire). Gavin Reskey (12 GP): GSAx −12.56 (−1.05/GP) — systemic underperformance, negative in 9 of 12 starts; worst game −3.00 vs NJ Rockets (10 GA on 7.0 xGA). Note: vs LA Kings game shows 0 shots faced — Reskey likely did not play that game. Kyle Liu (4 GP only): GSAx −1.20 (−0.30/GP) — limited sample, trajectory similar to Chavez.";
+
+
 /* ── Active team pointer (set by app.js switchTeam) ── */
 // Starts on Red to match existing behaviour
 let PLAYERS    = RED_PLAYERS;
