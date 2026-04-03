@@ -329,7 +329,7 @@ const ROYAL_PLAYERS = [
 const ROYAL_GOALIES = [
   {
     id: "G1",
-    name: "Goalie 1 (Unnamed)",
+    name: "Preston Miller",
     games: [
       { opp: "@ Revolution Elite 13U",         score: "—", ga: 1,  xga: 0.38, sv_pct: 88, saves: 7,  shots: 8,  gsax: -0.62 },
       { opp: "@ Mercer Chiefs 13U",             score: "—", ga: 0,  xga: 0.67, sv_pct: 100,saves: 7,  shots: 7,  gsax:  0.67 },
@@ -360,7 +360,7 @@ const ROYAL_GOALIES = [
   },
   {
     id: "G2",
-    name: "Goalie 2 (Unnamed)",
+    name: "Alexander Yi",
     games: [
       { opp: "@ Cupertino Cougars 14U A (1)",  score: "—", ga: 1, xga: 1.03, sv_pct: 94, saves: 15, shots: 16, gsax:  0.03 },
       { opp: "vs Cupertino Cougars 14U A (2)", score: "—", ga: 0, xga: 0.54, sv_pct: 100,saves: 5,  shots: 5,  gsax:  0.54 },
