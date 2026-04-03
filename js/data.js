@@ -799,7 +799,7 @@ const PURPLE_PLAYERS = [
     hits_pg: null, blocks_pg: 0.750, shotblk_pg: 0.500, sog_pg: 3.500
   },
   {
-    name: "Jonah Throop", pos: "D", team: "Jr. Sharks 13AAA", gp: 5, reliable: false,
+    name: "Jonah Throop", pos: "D", team: "CA Golden Bears", gp: 5, reliable: false,
     goals_pg: 0.000, xg_pg: 0.014, goals_minus_xg: -0.014, finishing: null, xg_shot: 0.02,
     pts_pg: 0.000, ast_pg: 0.000, plusminus_pg: 0.60, net_xg_pg: 0.520,
     corsi: 69, fenwick: null, fo_pct: null, fo_n: 4, sc_pct: null,
