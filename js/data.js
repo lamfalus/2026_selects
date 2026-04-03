@@ -1,4 +1,4 @@
-const TEAM_NAME = "2026 Jr. Sharks Red Selects";
+const TEAM_NAME = "2012 Red Selects";
 
 const PLAYERS = [
   {
