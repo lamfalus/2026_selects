@@ -3,6 +3,41 @@ const fmt  = (v, d=2) => v == null ? "—" : (+v).toFixed(d);
 const fmtP = (v)      => v == null ? "—" : v + "%";
 const sign = (v)      => v == null ? "—" : (v > 0 ? "+" : "") + (+v).toFixed(2);
 
+function cellVal(cell) {
+  const text = cell.textContent.trim().replace(/⚠/g, "").trim();
+  if (text === "—" || text === "") return null;
+  const num = parseFloat(text.replace(/[+%×]/g, ""));
+  return isNaN(num) ? text : num;
+}
+
+function makeSortable(tableEl) {
+  const ths = tableEl.querySelectorAll("thead th");
+  let sortCol = -1, sortAsc = true;
+  ths.forEach((th, colIdx) => {
+    th.classList.add("sortable");
+    th.addEventListener("click", () => {
+      sortAsc = sortCol === colIdx ? !sortAsc : true;
+      sortCol = colIdx;
+      ths.forEach((h, i) => {
+        h.classList.remove("sort-asc", "sort-desc");
+        if (i === colIdx) h.classList.add(sortAsc ? "sort-asc" : "sort-desc");
+      });
+      const tbody = tableEl.querySelector("tbody");
+      const rows = [...tbody.querySelectorAll("tr")];
+      rows.sort((a, b) => {
+        const av = cellVal(a.cells[colIdx]);
+        const bv = cellVal(b.cells[colIdx]);
+        if (av === null && bv === null) return 0;
+        if (av === null) return 1;
+        if (bv === null) return -1;
+        if (typeof av === "number" && typeof bv === "number") return sortAsc ? av - bv : bv - av;
+        return sortAsc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+}
+
 const DARK = window.matchMedia("(prefers-color-scheme: dark)").matches;
 const C = {
   blue: "#378ADD", blue2: "#185FA5",
@@ -295,7 +330,8 @@ function buildFinishing() {
 
   // Finishing table
   const tb = document.getElementById("fin-table-body");
-  if (tb) tb.innerHTML = PLAYERS.map(p => `
+  if (tb) {
+    tb.innerHTML = PLAYERS.map(p => `
     <tr>
       <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
       <td class="${p.pos === "F" ? "pos-f" : "pos-d"}">${p.pos}</td>
@@ -307,6 +343,8 @@ function buildFinishing() {
       <td class="${p.xg_shot >= 1.5 ? "hi" : p.xg_shot <= 0.2 ? "lo" : ""}">${p.xg_shot    != null ? p.xg_shot.toFixed(2)     : "—"}</td>
       <td>${p.sog_pg         != null ? p.sog_pg.toFixed(2)        : "—"}</td>
     </tr>`).join("");
+    makeSortable(tb.closest("table"));
+  }
 }
 
 /* ── Possession ─────────────────────────────── */
@@ -376,7 +414,8 @@ function buildPossession() {
 
   // Possession table
   const ptb = document.getElementById("poss-table-body");
-  if (ptb) ptb.innerHTML = [...PLAYERS].sort((a,b) => b.corsi - a.corsi).map(p => `
+  if (ptb) {
+    ptb.innerHTML = [...PLAYERS].sort((a,b) => b.corsi - a.corsi).map(p => `
     <tr>
       <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
       <td>${p.pos}</td>
@@ -387,6 +426,8 @@ function buildPossession() {
       <td>${p.fo_n > 0 ? p.fo_n : "—"}</td>
       <td>${p.sc_pct != null ? p.sc_pct + "%" : "—"}</td>
     </tr>`).join("");
+    makeSortable(ptb.closest("table"));
+  }
 
   const fn = document.getElementById("poss-footnote");
   if (fn) fn.textContent = POSS_FOOTNOTE;
@@ -450,7 +491,8 @@ function buildOnIce() {
 
   // On-ice table
   const otb = document.getElementById("onice-table-body");
-  if (otb) otb.innerHTML = [...PLAYERS].sort((a,b) => b.net_xg_pg - a.net_xg_pg).map(p => `
+  if (otb) {
+    otb.innerHTML = [...PLAYERS].sort((a,b) => b.net_xg_pg - a.net_xg_pg).map(p => `
     <tr>
       <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
       <td>${p.pos}</td>
@@ -461,6 +503,8 @@ function buildOnIce() {
       <td>${p.blocks_pg  != null ? p.blocks_pg.toFixed(2)  : "—"}</td>
       <td>${p.shotblk_pg != null ? p.shotblk_pg.toFixed(2) : "—"}</td>
     </tr>`).join("");
+    makeSortable(otb.closest("table"));
+  }
 }
 
 /* ── Goalies ────────────────────────────────── */
