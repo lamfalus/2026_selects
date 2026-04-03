@@ -400,7 +400,7 @@ const ROYAL_STRENGTHS = [
 ];
 
 const ROYAL_WEAKNESSES = [
-  { title: "Goalie 1: systemic underperformance over 25 games", body: "GSAx −42.01, SV% 83.9% vs 47.0 xGA. Negative in 17 of 25 starts. Two catastrophic games (−6.3 and −6.0) are extreme outliers, but removing them still leaves a clear pattern of consistent underperformance." },
+  { title: "Preston Miller: systemic underperformance over 25 games", body: "GSAx −42.01, SV% 83.9% vs 47.0 xGA. Negative in 17 of 25 starts. Two catastrophic games (−6.3 and −6.0) are extreme outliers, but removing them still leaves a clear pattern of consistent underperformance." },
   { title: "Ramon Zuniga: below-expected at full-season scale", body: "GSAx −33.0 over 25 GP aggregate. 85.4% SV%, 61% scoring chance save rate. Consistent underperformance across a large sample — not explained by shot quality faced (xG/shot 0.089 is moderate)." },
   { title: "Chan & Hannan: Jr. Sharks liability pair", body: "Both post CORSI 48% on 46–48 GP — the most reliable samples in the pool. Chan: Net xG/GP −0.17. Hannan: Net xG/GP −0.28. Consistent possession liabilities on the largest data available." },
   { title: "Logan Lora: zero offense, worst CORSI among reliable players", body: "9 GP, CORSI 45%, Net xG/GP −0.27, 0 goals, 0 assists. Generates no offense and does not suppress opponent shots. A clear liability when deployed." },
@@ -410,7 +410,7 @@ const ROYAL_WEAKNESSES = [
 
 const ROYAL_GAME_PLAN = [
   { n: 1, title: "Neutralize Leo Mikaelian (#17, Jr. Kings) — Primary Shutdown Objective", body: "1.905 Pts/GP, 1.53× finishing, CORSI 60%, Net xG/GP +0.33. His xG/shot of 1.91 means he attacks the inner slot consistently. Assign your best defensive pair, deny zone entries, force him wide. Do not give him clean crease access — he converts above what shot quality predicts." },
-  { n: 2, title: "Attack Goalie 1 with sustained volume — systemic underperformer", body: "GSAx −42.01 at −1.68/GP over 25 games. SV% 83.9% vs 47.0 xGA. Two 10-goal games show the ceiling when pressure is sustained. Strategy: hold offensive zone, shoot on first opportunity, attack every rebound." },
+  { n: 2, title: "Attack Miller with sustained volume — systemic underperformer", body: "GSAx −42.01 at −1.68/GP over 25 games. SV% 83.9% vs 47.0 xGA. Two 10-goal games show the ceiling when pressure is sustained. Strategy: hold offensive zone, shoot on first opportunity, attack every rebound." },
   { n: 3, title: "Push possession hard against Chan & Hannan (Jr. Sharks)", body: "Both CORSI 48% on 46–48 GP — most data-reliable players in the pool and both liabilities. Chan Net xG/GP −0.17, Hannan −0.28. Drive the inner slot and sustain forechecking pressure — this pair cedes possession consistently." },
   { n: 4, title: "Win the puck back after Zhou faceoff wins", body: "Zhou wins 60% of 309 draws but posts CORSI 48% and Net xG/GP −0.29. Focus on immediate puck battles after his won draws — his line does not convert faceoff wins into sustained zone control." },
   { n: 5, title: "Exploit Logan Lora (#8, Jr. Ducks) — attack his defensive pairings", body: "CORSI 45%, Net xG/GP −0.27, zero points in 9 GP. Lowest shot quality generation (xG/shot 0.07) — no offensive threat to defend against. When Lora is on ice, push to the inner slot aggressively." },
@@ -428,7 +428,7 @@ const ROYAL_OVERVIEW_FINDINGS = {
     "Jr. Kings: all four players ≥ 56% CORSI"
   ],
   weaknesses: [
-    "Goalie 1: GSAx −42.01 over 25 games (systemic)",
+    "Miller: GSAx −42.01 over 25 games (systemic)",
     "Chan & Hannan: both 48% CORSI on 46–48 GP",
     "Hannan: −0.28 net xG/GP over 46 GP",
     "Zhou: FO leader but CORSI 48%, Net xG/GP −0.29"
@@ -437,7 +437,7 @@ const ROYAL_OVERVIEW_FINDINGS = {
 
 const ROYAL_POSS_FOOTNOTE = "* Davila's 75% FO = 12 draws taken — low volume. ScCh% not available for Royal players.";
 
-const ROYAL_GOALIE_NOTE = "Goalie 1 (25 GP): GSAx −42.01 across 25 games — systemic underperformance, negative in 17 of 25 starts. Two worst games (−6.3 and −6.0 GSAx) are extreme but strip them out and this goalie is still negative in the majority of starts. Ramon Zuniga (season aggregate, 25 GP): GSAx −33.0. Both primary goalies allow more than shot quality predicts at scale.";
+const ROYAL_GOALIE_NOTE = "Preston Miller (25 GP): GSAx −42.01 across 25 games — systemic underperformance, negative in 17 of 25 starts. Two worst games (−6.3 and −6.0 GSAx) are extreme but strip them out and this goalie is still negative in the majority of starts. Ramon Zuniga (season aggregate, 25 GP): GSAx −33.0. Both primary goalies allow more than shot quality predicts at scale.";
 
 
 /* ── 2012 GOLD SELECTS ─────────────────────────────────────────── */
