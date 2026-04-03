@@ -176,6 +176,7 @@ function buildOverview() {
   const topNetXG    = reliable.slice().sort((a,b) => b.net_xg_pg - a.net_xg_pg)[0];
   const g1          = GOALIES[0];
   const g2          = GOALIES[1];
+  const g3          = GOALIES[2] || null;
 
   document.getElementById("ov-metrics").innerHTML = `
     <div class="metric-card good">
@@ -189,15 +190,21 @@ function buildOverview() {
       <div class="metric-sub">${topNetXG ? topNetXG.name : "—"}</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Goalie 1 GSAx</div>
+      <div class="metric-label">${g1.name || "Goalie 1"} GSAx</div>
       <div class="metric-value" style="color:var(--red-mid)">${sign(g1.total_gsax)}</div>
       <div class="metric-sub">${g1.sv_pct}% SV% · ${g1.games ? g1.games.length : g1.gp} games</div>
     </div>
     <div class="metric-card warn">
-      <div class="metric-label">Goalie 2 GSAx</div>
+      <div class="metric-label">${g2.name || "Goalie 2"} GSAx</div>
       <div class="metric-value">${sign(g2.total_gsax)}</div>
       <div class="metric-sub">${g2.sv_pct}% SV% · ${g2.games ? g2.games.length : g2.gp} games</div>
-    </div>`;
+    </div>
+    ${g3 ? `
+    <div class="metric-card warn">
+      <div class="metric-label">${g3.name || "Goalie 3"} GSAx</div>
+      <div class="metric-value">${sign(g3.total_gsax)}</div>
+      <div class="metric-sub">${g3.sv_pct}% SV% · ${g3.games ? g3.games.length : g3.gp} games</div>
+    </div>` : ""}`;
 
   // Radar
   const radarLabels = ["Finishing quality","Shot danger","F possession","D possession","On-ice xG impact","Faceoffs","Goalie perf.","Scoring ch. conv."];
