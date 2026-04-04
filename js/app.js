@@ -193,26 +193,26 @@ function buildOverview() {
     <div class="metric-card good">
       <div class="metric-label">Best finisher (10+ GP)</div>
       <div class="metric-value">${topFinisher ? fmt(topFinisher.finishing) + "×" : "—"}</div>
-      <div class="metric-sub">${topFinisher ? topFinisher.name : "—"}</div>
+      <div class="metric-sub">${topFinisher ? "#" + topFinisher.jersey + " " + topFinisher.name : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Best net xG/GP (10+ GP)</div>
       <div class="metric-value">${topNetXG ? "+" + fmt(topNetXG.net_xg_pg) : "—"}</div>
-      <div class="metric-sub">${topNetXG ? topNetXG.name : "—"}</div>
+      <div class="metric-sub">${topNetXG ? "#" + topNetXG.jersey + " " + topNetXG.name : "—"}</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">${g1.name || "Goalie 1"} GSAx</div>
+      <div class="metric-label">${(g1.jersey ? "#" + g1.jersey + " " : "") + (g1.name || "Goalie 1")} GSAx</div>
       <div class="metric-value" style="color:var(--red-mid)">${sign(g1.total_gsax)}</div>
       <div class="metric-sub">${g1.sv_pct}% SV% · ${g1.games ? g1.games.length : g1.gp} games</div>
     </div>
     <div class="metric-card warn">
-      <div class="metric-label">${g2.name || "Goalie 2"} GSAx</div>
+      <div class="metric-label">${(g2.jersey ? "#" + g2.jersey + " " : "") + (g2.name || "Goalie 2")} GSAx</div>
       <div class="metric-value">${sign(g2.total_gsax)}</div>
       <div class="metric-sub">${g2.sv_pct}% SV% · ${g2.games ? g2.games.length : g2.gp} games</div>
     </div>
     ${g3 ? `
     <div class="metric-card warn">
-      <div class="metric-label">${g3.name || "Goalie 3"} GSAx</div>
+      <div class="metric-label">${(g3.jersey ? "#" + g3.jersey + " " : "") + (g3.name || "Goalie 3")} GSAx</div>
       <div class="metric-value">${sign(g3.total_gsax)}</div>
       <div class="metric-sub">${g3.sv_pct}% SV% · ${g3.games ? g3.games.length : g3.gp} games</div>
     </div>` : ""}`;
@@ -252,7 +252,7 @@ function buildRoster() {
     return arr.map(p => `
       <div class="player-card ${p.reliable ? "reliable" : "limited"}">
         <div class="pc-header">
-          <div><div class="pc-name">${p.name}</div><div class="pc-team">${p.team}</div></div>
+          <div><div class="pc-name">#${p.jersey} ${p.name}</div><div class="pc-team">${p.team}</div></div>
           <span class="pc-pos ${p.pos}">${p.pos}</span>
         </div>
         <div class="pc-stats">
@@ -286,22 +286,22 @@ function buildFinishing() {
     <div class="metric-card good">
       <div class="metric-label">Best finisher (10+ GP)</div>
       <div class="metric-value">${topFin ? fmt(topFin.finishing) + "×" : "—"}</div>
-      <div class="metric-sub">${topFin ? topFin.name + " — " + topFin.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${topFin ? "#" + topFin.jersey + " " + topFin.name + " — " + topFin.gp + " GP" : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Best xG/shot</div>
       <div class="metric-value">${topXGS ? fmt(topXGS.xg_shot) : "—"}</div>
-      <div class="metric-sub">${topXGS ? topXGS.name + " — " + topXGS.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${topXGS ? "#" + topXGS.jersey + " " + topXGS.name + " — " + topXGS.gp + " GP" : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Best G−xG/GP (10+ GP)</div>
       <div class="metric-value">${topGMXG && topGMXG.goals_minus_xg != null ? (topGMXG.goals_minus_xg>0?"+":"") + fmt(topGMXG.goals_minus_xg) : "—"}</div>
-      <div class="metric-sub">${topGMXG ? topGMXG.name : "—"}</div>
+      <div class="metric-sub">${topGMXG ? "#" + topGMXG.jersey + " " + topGMXG.name : "—"}</div>
     </div>
     <div class="metric-card warn">
       <div class="metric-label">Underperforming xG (10+ GP)</div>
       <div class="metric-value">${lowFin && lowFin !== topFin ? fmt(lowFin.finishing) + "×" : "—"}</div>
-      <div class="metric-sub">${lowFin && lowFin !== topFin ? lowFin.name + " — " + lowFin.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${lowFin && lowFin !== topFin ? "#" + lowFin.jersey + " " + lowFin.name + " — " + lowFin.gp + " GP" : "—"}</div>
     </div>`;
 
   // Goals vs xG chart
@@ -360,7 +360,7 @@ function buildFinishing() {
   if (tb) {
     tb.innerHTML = PLAYERS.map(p => `
     <tr>
-      <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
+      <td class="pos-${p.pos}">#${p.jersey} ${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
       <td class="${p.pos === "F" ? "pos-f" : "pos-d"}">${p.pos}</td>
       <td>${p.gp}</td>
       <td>${p.goals_pg      != null ? p.goals_pg.toFixed(3)      : "—"}</td>
@@ -388,22 +388,22 @@ function buildPossession() {
     <div class="metric-card good">
       <div class="metric-label">Best F CORSI (10+ GP)</div>
       <div class="metric-value">${topFCorsi ? topFCorsi.corsi + "%" : "—"}</div>
-      <div class="metric-sub">${topFCorsi ? topFCorsi.name : "—"}</div>
+      <div class="metric-sub">${topFCorsi ? "#" + topFCorsi.jersey + " " + topFCorsi.name : "—"}</div>
     </div>
     <div class="metric-card ${topDCorsi && topDCorsi.corsi >= 50 ? "good" : "warn"}">
       <div class="metric-label">Best D CORSI (10+ GP)</div>
       <div class="metric-value">${topDCorsi ? topDCorsi.corsi + "%" : "—"}</div>
-      <div class="metric-sub">${topDCorsi ? topDCorsi.name : "—"}</div>
+      <div class="metric-sub">${topDCorsi ? "#" + topDCorsi.jersey + " " + topDCorsi.name : "—"}</div>
     </div>
     <div class="metric-card warn">
       <div class="metric-label">D possession problem</div>
       <div class="metric-value">${lowDCorsi && lowDCorsi !== topDCorsi ? lowDCorsi.corsi + "%" : "—"}</div>
-      <div class="metric-sub">${lowDCorsi && lowDCorsi !== topDCorsi ? lowDCorsi.name + " (" + lowDCorsi.gp + " GP)" : "—"}</div>
+      <div class="metric-sub">${lowDCorsi && lowDCorsi !== topDCorsi ? "#" + lowDCorsi.jersey + " " + lowDCorsi.name + " (" + lowDCorsi.gp + " GP)" : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">FO center (30+ draws)</div>
       <div class="metric-value">${topFO ? topFO.fo_pct + "%" : "—"}</div>
-      <div class="metric-sub">${topFO ? topFO.name + " (" + topFO.fo_n + " draws)" : "No qualified player"}</div>
+      <div class="metric-sub">${topFO ? "#" + topFO.jersey + " " + topFO.name + " (" + topFO.fo_n + " draws)" : "No qualified player"}</div>
     </div>`;
 
   // CORSI chart
@@ -444,7 +444,7 @@ function buildPossession() {
   if (ptb) {
     ptb.innerHTML = [...PLAYERS].sort((a,b) => b.corsi - a.corsi).map(p => `
     <tr>
-      <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
+      <td class="pos-${p.pos}">#${p.jersey} ${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
       <td>${p.pos}</td>
       <td>${p.gp}</td>
       <td class="${p.corsi >= 52 ? "hi" : p.corsi <= 45 ? "lo" : ""}">${p.corsi}%</td>
@@ -474,22 +474,22 @@ function buildOnIce() {
     <div class="metric-card ${top && top.net_xg_pg > 0 ? "good" : "warn"}">
       <div class="metric-label">Best net xG/GP (10+ GP)</div>
       <div class="metric-value">${top ? sign(top.net_xg_pg) : "—"}</div>
-      <div class="metric-sub">${top ? top.name + " — " + top.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${top ? "#" + top.jersey + " " + top.name + " — " + top.gp + " GP" : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Best F net xG/GP</div>
       <div class="metric-value">${topF ? sign(topF.net_xg_pg) : "—"}</div>
-      <div class="metric-sub">${topF ? topF.name + " — " + topF.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${topF ? "#" + topF.jersey + " " + topF.name + " — " + topF.gp + " GP" : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Best D net xG/GP</div>
       <div class="metric-value">${topD ? sign(topD.net_xg_pg) : "—"}</div>
-      <div class="metric-sub">${topD ? topD.name + " — " + topD.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${topD ? "#" + topD.jersey + " " + topD.name + " — " + topD.gp + " GP" : "—"}</div>
     </div>
     <div class="metric-card warn">
       <div class="metric-label">Worst net xG/GP (10+ GP)</div>
       <div class="metric-value">${bot && bot !== top ? sign(bot.net_xg_pg) : "—"}</div>
-      <div class="metric-sub">${bot && bot !== top ? bot.name + " — " + bot.gp + " GP" : "—"}</div>
+      <div class="metric-sub">${bot && bot !== top ? "#" + bot.jersey + " " + bot.name + " — " + bot.gp + " GP" : "—"}</div>
     </div>`;
 
   makeChart("netxg-chart", {
@@ -521,7 +521,7 @@ function buildOnIce() {
   if (otb) {
     otb.innerHTML = [...PLAYERS].sort((a,b) => b.net_xg_pg - a.net_xg_pg).map(p => `
     <tr>
-      <td class="pos-${p.pos}">${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
+      <td class="pos-${p.pos}">#${p.jersey} ${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}</td>
       <td>${p.pos}</td>
       <td>${p.gp}</td>
       <td class="${p.net_xg_pg > 0.1 ? "hi" : p.net_xg_pg < -0.15 ? "lo" : ""}">${sign(p.net_xg_pg)}</td>
@@ -545,7 +545,7 @@ function buildGoalies() {
     const isAggregate = g.aggregate === true;
 
     html += `
-      <div class="section-label">${g.name || ("Goalie " + (gi+1))}</div>
+      <div class="section-label">${(g.jersey ? "#" + g.jersey + " " : "") + (g.name || ("Goalie " + (gi+1)))}</div>
       <div class="metric-row">
         <div class="metric-card"><div class="metric-label">Saves / Shots</div>
           <div class="metric-value">${g.total_saves}/${g.total_shots}</div></div>
@@ -578,8 +578,8 @@ function buildGoalies() {
     const g1count = g1.games.length;
     const g2count = g2 ? g2.games.length : 0;
     const chartLabel = g2
-      ? `GSAx by game — first ${g1count} = ${g1.name || "G1"} · last ${g2count} = ${g2.name || "G2"}`
-      : `GSAx by game — ${g1.name || "G1"} (${g1count} games)`;
+      ? `GSAx by game — first ${g1count} = ${(g1.jersey ? "#" + g1.jersey + " " : "") + (g1.name || "G1")} · last ${g2count} = ${(g2.jersey ? "#" + g2.jersey + " " : "") + (g2.name || "G2")}`
+      : `GSAx by game — ${(g1.jersey ? "#" + g1.jersey + " " : "") + (g1.name || "G1")} (${g1count} games)`;
 
     html += `
       <div class="chart-card" style="margin-top:8px">
