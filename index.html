@@ -151,7 +151,7 @@
     <div id="physicality" class="page">
       <div class="page-header">
         <h2>Physicality</h2>
-        <p>Physicality Index = (Hits/GP × 2) + Blocks/GP. Measures physical presence and defensive engagement. Reliable samples (10+ GP) highlighted.</p>
+        <p>Physicality Index = (Hits/GP × 2) + Blocks/GP. Measures physical presence and defensive engagement. Pen. Time/GP in seconds. Reliable samples (10+ GP) highlighted.</p>
       </div>
       <div id="phys-metrics" class="metric-row"></div>
       <div class="chart-card">
@@ -162,7 +162,7 @@
         <table>
           <thead><tr>
             <th>Player</th><th>Pos</th><th>GP</th>
-            <th>Hits/GP</th><th>Blocks/GP</th><th>ShotBlk/GP</th><th>Phys. Index</th>
+            <th>Hits/GP</th><th>Hits Against/GP</th><th>Pen Drawn/GP</th><th>Pen Time/GP (s)</th><th>Blocks/GP</th><th>ShotBlk/GP</th><th>Phys. Index</th><th>Profile</th>
           </tr></thead>
           <tbody id="phys-table-body"></tbody>
         </table>
@@ -209,35 +209,4 @@
       <div class="sw-grid">
         <div class="sw-card str">
           <div class="sw-title">Strengths</div>
-          <div id="strengths-list"></div>
-        </div>
-        <div class="sw-card wkn">
-          <div class="sw-title">Weaknesses</div>
-          <div id="weaknesses-list"></div>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Team profile — all categories 0–10</div>
-        <div class="chart-wrap" style="height:320px"><canvas id="sw-radar"></canvas></div>
-      </div>
-    </div>
-
-    <!-- Game Plan -->
-    <div id="gameplan" class="page">
-      <div class="page-header">
-        <h2>Game Plan</h2>
-        <p>Tactical recommendations derived from the advanced metrics. Ordered by impact priority.</p>
-      </div>
-      <div id="gameplan-list" class="gp-list"></div>
-    </div>
-
-  </main>
-</div>
-
-<button class="mobile-nav-toggle" id="mobileToggle">☰</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script src="js/data.js"></script>
-<script src="js/app.js"></script>
-</body>
-</html>
+         

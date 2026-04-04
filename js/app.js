@@ -476,6 +476,10 @@ function buildPhysicality() {
   const topBlk   = reliable.slice().sort((a, b) => b.blocks_pg - a.blocks_pg)[0];
   const topSB    = reliable.slice().filter(p => p.shotblk_pg != null)
                             .sort((a, b) => b.shotblk_pg - a.shotblk_pg)[0];
+  const topPD    = reliable.slice().filter(p => p.pen_drawn_pg != null)
+                            .sort((a, b) => b.pen_drawn_pg - a.pen_drawn_pg)[0];
+  const topHA    = reliable.slice().filter(p => p.hits_against_pg != null)
+                            .sort((a, b) => b.hits_against_pg - a.hits_against_pg)[0];
 
   // Standout physical players (reliable, hits_pg >= 0.5)
   const standouts = reliable.filter(p => p.hits_pg >= 0.5)
@@ -491,6 +495,16 @@ function buildPhysicality() {
       <div class="metric-label">Most hits/GP (10+ GP)</div>
       <div class="metric-value">${topHits ? fmt(topHits.hits_pg) : "—"}</div>
       <div class="metric-sub">${topHits ? "#" + topHits.jersey + " " + topHits.name : "—"}</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Most hits absorbed/GP (10+ GP)</div>
+      <div class="metric-value">${topHA ? fmt(topHA.hits_against_pg) : "—"}</div>
+      <div class="metric-sub">${topHA ? "#" + topHA.jersey + " " + topHA.name : "—"}</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Most penalties drawn/GP (10+ GP)</div>
+      <div class="metric-value">${topPD ? fmt(topPD.pen_drawn_pg) : "—"}</div>
+      <div class="metric-sub">${topPD ? "#" + topPD.jersey + " " + topPD.name : "—"}</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Most blocks/GP (10+ GP)</div>
@@ -509,7 +523,7 @@ function buildPhysicality() {
         ${standouts.map(p => `
           <span style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--text1)">
             <strong>#${p.jersey} ${p.name}</strong>
-            <span style="color:var(--text3);margin-left:6px">${fmt(p.hits_pg)} hits/GP · ${p.team}</span>
+            <span style="color:var(--text3);margin-left:6px">${fmt(p.hits_pg)} hits/GP · ${fmt(p.hits_against_pg ?? 0)} HA/GP · ${fmt(p.pen_drawn_pg ?? 0)} PenD/GP · ${p.team}</span>
           </span>`).join("")}
       </div>
     </div>` : ""}`;
@@ -536,7 +550,10 @@ function buildPhysicality() {
       plugins: {
         legend: { display: false },
         title: { display: true, text: "Red = 0.5+ hits/GP (standout) · Blue = below threshold · Faded = <10 GP", color: C.text, font: { size: 11 }, align: "start" },
-        tooltip: { callbacks: { label: ctx => ` ${fmt(chartPlayers[ctx.dataIndex].hits_pg)} hits/GP (${chartPlayers[ctx.dataIndex].gp} GP)` } }
+        tooltip: { callbacks: { label: ctx => {
+          const p = chartPlayers[ctx.dataIndex];
+          return ` ${fmt(p.hits_pg)} hits/GP · ${fmt(p.hits_against_pg ?? 0)} HA/GP · ${fmt(p.pen_drawn_pg ?? 0)} PenD/GP (${p.gp} GP)`;
+        }}}
       },
       scales: {
         x: { ticks: { color: C.text, font: { size: 11 }, maxRotation: 35 }, grid: { display: false } },
@@ -553,10 +570,14 @@ function buildPhysicality() {
         <td class="pos-${p.pos}">#${p.jersey} ${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}${p.hits_pg >= 0.5 && p.reliable ? ' <span style="font-size:10px;color:var(--red);font-weight:700">●</span>' : ""}</td>
         <td>${p.pos}</td>
         <td>${p.gp}</td>
-        <td class="${p.hits_pg >= 0.5 ? "hi" : ""}">${p.hits_pg   != null ? fmt(p.hits_pg)   : "—"}</td>
-        <td>${p.blocks_pg  != null ? fmt(p.blocks_pg)  : "—"}</td>
-        <td>${p.shotblk_pg != null ? fmt(p.shotblk_pg) : "—"}</td>
+        <td class="${p.hits_pg >= 0.5 ? "hi" : ""}">${p.hits_pg        != null ? fmt(p.hits_pg)          : "—"}</td>
+        <td>${p.hits_against_pg != null ? fmt(p.hits_against_pg) : "—"}</td>
+        <td class="${p.pen_drawn_pg >= 0.5 ? "hi" : ""}">${p.pen_drawn_pg != null ? fmt(p.pen_drawn_pg)   : "—"}</td>
+        <td class="${p.pen_time_pg >= 120 ? "hi" : ""}">${p.pen_time_pg  != null ? fmt(p.pen_time_pg)     : "—"}</td>
+        <td>${p.blocks_pg       != null ? fmt(p.blocks_pg)        : "—"}</td>
+        <td>${p.shotblk_pg      != null ? fmt(p.shotblk_pg)       : "—"}</td>
         <td class="${p.phys >= 1.5 ? "hi" : ""}">${p.phys != null ? p.phys : "—"}</td>
+        <td style="font-size:11px;color:var(--text3);max-width:220px">${p.phys_note || "—"}</td>
       </tr>`).join("");
     makeSortable(tb.closest("table"));
   }
