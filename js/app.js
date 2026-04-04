@@ -156,6 +156,7 @@ function buildPage(id) {
   if (id === "roster")     buildRoster();
   if (id === "finishing")  buildFinishing();
   if (id === "possession") buildPossession();
+  if (id === "physicality") buildPhysicality();
   if (id === "onice")      buildOnIce();
   if (id === "goalies")    buildGoalies();
   if (id === "scouting")   buildScouting();
@@ -458,6 +459,107 @@ function buildPossession() {
 
   const fn = document.getElementById("poss-footnote");
   if (fn) fn.textContent = POSS_FOOTNOTE;
+}
+
+/* ── Physicality ────────────────────────────── */
+function buildPhysicality() {
+  const physIndex = p => p.hits_pg != null && p.blocks_pg != null
+    ? +(p.hits_pg * 2 + p.blocks_pg).toFixed(2) : null;
+
+  const reliable = PLAYERS.filter(p => p.reliable);
+  const all      = [...PLAYERS].map(p => ({ ...p, phys: physIndex(p) }))
+                               .sort((a, b) => (b.phys || 0) - (a.phys || 0));
+
+  const topHits  = reliable.slice().sort((a, b) => b.hits_pg - a.hits_pg)[0];
+  const topPhys  = reliable.slice().filter(p => physIndex(p) != null)
+                            .sort((a, b) => physIndex(b) - physIndex(a))[0];
+  const topBlk   = reliable.slice().sort((a, b) => b.blocks_pg - a.blocks_pg)[0];
+  const topSB    = reliable.slice().filter(p => p.shotblk_pg != null)
+                            .sort((a, b) => b.shotblk_pg - a.shotblk_pg)[0];
+
+  // Standout physical players (reliable, hits_pg >= 0.5)
+  const standouts = reliable.filter(p => p.hits_pg >= 0.5)
+                             .sort((a, b) => b.hits_pg - a.hits_pg);
+
+  document.getElementById("phys-metrics").innerHTML = `
+    <div class="metric-card">
+      <div class="metric-label">Most physical (10+ GP)</div>
+      <div class="metric-value">${topPhys ? fmt(physIndex(topPhys)) : "—"}</div>
+      <div class="metric-sub">${topPhys ? "#" + topPhys.jersey + " " + topPhys.name + " — Phys. Index" : "—"}</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Most hits/GP (10+ GP)</div>
+      <div class="metric-value">${topHits ? fmt(topHits.hits_pg) : "—"}</div>
+      <div class="metric-sub">${topHits ? "#" + topHits.jersey + " " + topHits.name : "—"}</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Most blocks/GP (10+ GP)</div>
+      <div class="metric-value">${topBlk ? fmt(topBlk.blocks_pg) : "—"}</div>
+      <div class="metric-sub">${topBlk ? "#" + topBlk.jersey + " " + topBlk.name : "—"}</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Most shot blocks/GP (10+ GP)</div>
+      <div class="metric-value">${topSB ? fmt(topSB.shotblk_pg) : "—"}</div>
+      <div class="metric-sub">${topSB ? "#" + topSB.jersey + " " + topSB.name : "—"}</div>
+    </div>
+    ${standouts.length > 0 ? `
+    <div class="chart-card" style="margin:0;grid-column:1/-1;padding:12px 16px">
+      <div class="chart-title" style="margin-bottom:6px">Standout physical players (10+ GP · 0.5+ hits/GP)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        ${standouts.map(p => `
+          <span style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--text1)">
+            <strong>#${p.jersey} ${p.name}</strong>
+            <span style="color:var(--text3);margin-left:6px">${fmt(p.hits_pg)} hits/GP · ${p.team}</span>
+          </span>`).join("")}
+      </div>
+    </div>` : ""}`;
+
+  // Hits/GP bar chart
+  const chartPlayers = [...PLAYERS].filter(p => p.hits_pg != null)
+                                    .sort((a, b) => b.hits_pg - a.hits_pg);
+  makeChart("phys-chart", {
+    type: "bar",
+    data: {
+      labels: chartPlayers.map(p => p.name.split(" ").slice(-1)[0] + (p.pos === "D" ? " D" : " F")),
+      datasets: [{
+        label: "Hits/GP",
+        data: chartPlayers.map(p => p.hits_pg),
+        backgroundColor: chartPlayers.map(p => {
+          const alpha = p.reliable ? 1 : 0.35;
+          return p.hits_pg >= 0.5 ? `rgba(226,75,74,${alpha})` : `rgba(55,138,221,${alpha})`;
+        }),
+        borderRadius: 3
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: "Red = 0.5+ hits/GP (standout) · Blue = below threshold · Faded = <10 GP", color: C.text, font: { size: 11 }, align: "start" },
+        tooltip: { callbacks: { label: ctx => ` ${fmt(chartPlayers[ctx.dataIndex].hits_pg)} hits/GP (${chartPlayers[ctx.dataIndex].gp} GP)` } }
+      },
+      scales: {
+        x: { ticks: { color: C.text, font: { size: 11 }, maxRotation: 35 }, grid: { display: false } },
+        y: { beginAtZero: true, ticks: { color: C.text }, grid: { color: C.grid } }
+      }
+    }
+  });
+
+  // Table
+  const tb = document.getElementById("phys-table-body");
+  if (tb) {
+    tb.innerHTML = all.map(p => `
+      <tr>
+        <td class="pos-${p.pos}">#${p.jersey} ${p.name}${!p.reliable ? '<span class="badge-lim">⚠</span>' : ""}${p.hits_pg >= 0.5 && p.reliable ? ' <span style="font-size:10px;color:var(--red);font-weight:700">●</span>' : ""}</td>
+        <td>${p.pos}</td>
+        <td>${p.gp}</td>
+        <td class="${p.hits_pg >= 0.5 ? "hi" : ""}">${p.hits_pg   != null ? fmt(p.hits_pg)   : "—"}</td>
+        <td>${p.blocks_pg  != null ? fmt(p.blocks_pg)  : "—"}</td>
+        <td>${p.shotblk_pg != null ? fmt(p.shotblk_pg) : "—"}</td>
+        <td class="${p.phys >= 1.5 ? "hi" : ""}">${p.phys != null ? p.phys : "—"}</td>
+      </tr>`).join("");
+    makeSortable(tb.closest("table"));
+  }
 }
 
 /* ── On-Ice Impact ──────────────────────────── */
