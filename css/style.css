@@ -104,6 +104,11 @@ body {
   border-color: rgba(212,160,23,0.35);
   color: #f5c842;
 }
+.ts-btn.active[data-team="purple"] {
+  background: rgba(124,58,237,0.12);
+  border-color: rgba(124,58,237,0.35);
+  color: #a78bfa;
+}
 
 .ts-dot {
   width: 7px;
